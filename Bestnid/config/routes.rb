@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
 
-  get 'static_pages/Sobre_bestnid', to: 'static_pages#Sobre_Bestnid'
+  get '/static_pages/Sobre_bestnid', to: 'static_pages#Sobre_bestnid'
 
-  get 'static_pages/Ayuda', to: 'static_pages#Ayuda'
+  get '/static_pages/Ayuda', to: 'static_pages#Ayuda'
 
-  get 'static_pages/Contacto', to: 'static_pages#Contacto'
+  get '/static_pages/Contacto', to: 'static_pages#Contacto'
+
+  get "welcome/index"
+  
+  post "usuario/new", to: 'usuario#new'
+
+  get "usuario/new", to: 'usuario#new'
+
+  get "usuario/index"
 
   resources :categoria
 
