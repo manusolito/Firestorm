@@ -2,8 +2,8 @@ class CreateProductos < ActiveRecord::Migration
   def change
     create_table :productos do |t|
       t.string :nombre
-      t.string :descripcion
-      t.string :vencimiento
+      t.text :descripcion
+      t.date :vencimiento
 
       t.timestamps
     end
