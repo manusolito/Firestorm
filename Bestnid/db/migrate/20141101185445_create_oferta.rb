@@ -1,7 +1,7 @@
 class CreateOferta < ActiveRecord::Migration
   def change
     create_table :oferta do |t|
-      t.text :motivo
+      t.string :motivo
       t.integer :monto
 
       t.timestamps
