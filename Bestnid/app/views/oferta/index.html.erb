@@ -1,0 +1,18 @@
+<h1>Mis ofertas</h1>
+
+<table style="width:100%">
+    <tr>
+      <th>Motivo</th>
+      <th>Monto</th>
+    </tr>
+
+  <tbody>
+    <% @oferta.each do |oferta| %>
+      <tr>
+        <td><%= oferta.motivo %></td>
+        <td><%= oferta.monto %></td>
+		<td><%= link_to 'Mostrar', oferta %></td>
+      </tr>
+    <% end %>
+</table>
+

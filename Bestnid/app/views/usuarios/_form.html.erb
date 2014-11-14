@@ -1,0 +1,52 @@
+<head>
+<style>
+div {
+    padding: 5px;
+}
+</style>
+</head>
+
+<%= form_for (@usuario) do |t| %>  </br> 
+<%if @usuario.errors.any? %>
+<div id="error_explanation">
+    <h2><font color="red"> El usuario no puede ser gardado:</font></h2>
+><ul>
+<% @usuario.errors.full_messages.each do |m| %>
+<li><%= m%></li>
+<%end%>
+</ul>
+</div>
+<%end%>
+  <div class="field">
+    <%= t.label :url %><br>
+    <%= t.text_field :url, :required => "required"%>
+  </div>
+  <p>
+    <%= t.label :nombre%><br>
+    <%= t.text_field :nombre, :required => "required"%>
+  </p>
+  
+  <p>
+    <%= t.label :dni %><br>
+    <%= t.number_field :dni, :required => "required" %>
+  </p>
+
+  <p>
+    <%= t.label :email %><br>
+    <%= t.email_field :email , :required => "required", :placeholder => "alguien@ejemplo.com"%>
+  </p>
+
+  <p>
+    <%= t.label :tarjeta %><br>
+    <%= t.number_field :tarjeta, :required => "required", :size => "1" %> 
+  </p>
+  
+  <p>
+    <%= t.label :contraseña %><br>
+    <%= t.password_field :contrasenia, :required => "required" %>
+  </p>
+
+  <p>
+    <%= t.submit "Registrarse"%>
+  </p>
+<% end %>

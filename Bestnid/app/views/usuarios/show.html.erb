@@ -1,0 +1,37 @@
+﻿<strong> Gracias <%= @usuario.nombre %> por crear un perfil en Bestnid</strong>.
+<p>
+<br> Estos son tus datos: </br>
+</p>
+<br> <strong>Foto:</strong> </br>
+<p>
+	  <td><%= image_tag(@usuario.url, size: "100") %></td>
+</p>
+<p>
+  <strong>Nombre:</strong>
+  <%= @usuario.nombre %>
+</p>
+
+<p>
+  <strong>Dni:</strong>
+  <%= @usuario.dni %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @usuario.email %>
+</p>
+
+<p>
+  <strong>Tarjeta:</strong>
+  <%= @usuario.tarjeta %>
+</p>
+
+<p>
+  <strong>Contraseña:</strong>
+  <%= @usuario.contrasenia %>
+</p>
+
+<p>
+  <%= link_to "Editar", controller: "usuarios", action: "edit", id: @usuario.id %>
+</p>
+<%= link_to 'Atras', root_path %>

@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110152226) do
+ActiveRecord::Schema.define(version: 20141113140631) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categoria", force: true do |t|
     t.string   "nombre"
@@ -24,21 +27,25 @@ ActiveRecord::Schema.define(version: 20141110152226) do
     t.integer  "monto"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "producto_id"
   end
 
   create_table "productos", force: true do |t|
     t.string   "nombre"
+    t.string   "prourl"
     t.text     "descripcion"
     t.date     "vencimiento"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "categoria_id"
   end
 
   create_table "usuarios", force: true do |t|
+    t.string   "url"
     t.string   "nombre"
     t.integer  "dni"
     t.string   "email"
-    t.integer  "tarjeta"
+    t.integer  "tarjeta",     limit: 8
     t.string   "contrasenia"
     t.datetime "created_at"
     t.datetime "updated_at"

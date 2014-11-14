@@ -1,0 +1,21 @@
+
+<p>
+  <strong>Motivo:</strong>
+  <%= @oferta.motivo %>
+</p>
+
+</br>
+
+<p>
+  <strong>Monto:</strong>
+  <%= @oferta.monto %>
+</p>
+
+<p>
+  <strong>Producto:</strong>
+  <%= link_to Producto.find(@oferta.producto_id).nombre, controller: "productos", action: "show", id: @oferta.producto_id %>
+</p>
+
+<%= link_to 'Atras', oferta_path %>
+
+
