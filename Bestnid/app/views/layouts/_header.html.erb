@@ -15,10 +15,16 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li ><a href="static_pages/Sobre_bestnid">Sobre Bestnid</a></li>
-                <li><a href="static_pages/Ayuda" >Ayuda</a></li>
-                <li><a href="static_pages/Contacto">Contacto</a></li>
-                </ul>
+                <li ><%= link_to 'Sobre bestnid', static_pages_Sobre_bestnid_path %></li>
+                <li><%= link_to 'Subastar', new_producto_path %></li>
+                <li><%= link_to 'Crear categoría', new_categoria_path %></li>
+                <li><%= link_to 'Productos publicados', productos_path %></li>
+                <li><%= link_to 'Categorías', categorias_path %></li>
+                <li><%= link_to 'Mis ofertas', ofertas_path %></li>
+                <li><%= link_to 'Ayuda', static_pages_Ayuda_path %></li>
+                <li><%= link_to 'Contacto', static_pages_Contacto_path %></li>
+                <li><%= link_to 'Registrarse', new_usuario_path %></li>
+              </ul>
                 </li>
               </ul>
         </div><!--/.nav-collapse -->

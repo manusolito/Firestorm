@@ -3,7 +3,6 @@ class CreateOferta < ActiveRecord::Migration
     create_table :oferta do |t|
       t.text :motivo
       t.integer :monto
-
       t.timestamps
     end
   end
