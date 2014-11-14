@@ -1,9 +1,20 @@
+<<<<<<< HEAD
 <p> Gracias <%= @usuario.nombre %> por introducir tu perfil en Bestnid.
 <br> Estos son tus datos personales: </br>
 </p>
 
 </br> </br>
 
+=======
+﻿<strong> Gracias <%= @usuario.nombre %> por crear un perfil en Bestnid</strong>.
+<p>
+<br> Estos son tus datos: </br>
+</p>
+<br> <strong>Foto:</strong> </br>
+<p>
+	  <td><%= image_tag(@usuario.url, size: "100") %></td>
+</p>
+>>>>>>> origin/categorias
 <p>
   <strong>Nombre:</strong>
   <%= @usuario.nombre %>
@@ -29,5 +40,12 @@
   <%= @usuario.contrasenia %>
 </p>
 
+<<<<<<< HEAD
 </br>
 <li><a href="/usuarios/<%=@usuario.id%>/edit">Editar perfil</a></li>
+=======
+<p>
+  <%= link_to "Editar", controller: "usuarios", action: "edit", id: @usuario.id %>
+</p>
+<%= link_to 'Atras', root_path %>
+>>>>>>> origin/categorias

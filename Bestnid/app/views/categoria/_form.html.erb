@@ -1,0 +1,28 @@
+<head>
+<style>
+div {
+    padding: 5px;
+}
+</style>
+</head>
+<%= form_for :categoria, url:categoria_path do |f| %>
+ <% if @categoria.errors.any? %>
+    <div id="error_explanation">
+      <h2><font color="red"> La categoria no puede ser gardada:</font></h2>
+
+      <ul>
+      <% @categoria.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :required => "required"%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar Categoria"%>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Categoria:</strong>
+  <%= @categoria.nombre %>
+</p>
+
+  <p><strong>Productos:</strong></p>
+  
+<head>
+<style>
+table, td {
+    padding: 5px;
+}
+</style>
+</head>
+
+<table style="width:100%">
+ <tr>
+  	<th>Imagen</th>
+	<th>Nombre</th>
+	<th>Descripcion</th>
+	<th>Vencimiento</th>
+  </tr>
+  <%@categoria.productos.order(:id).each do |productos|%>
+    <tr>
+	  <td><%= image_tag(productos.prourl, size: "80") %></td>
+	  <td><%=productos.nombre%></td>
+	  <td><%=productos.descripcion%></td>
+	  <td><%=productos.vencimiento%></td>
+	  <td><%= link_to "Mostrar", controller: "productos", action: "show", id: productos.id %></td>
+	</tr>
+  <%end%>
+</table>
+
+<%= link_to 'Atras', categoria_path %>
