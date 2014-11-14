@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get "usuario/index"
 
+   post "usuario/edit", to: 'usuario#edit'
+
+  get '/usuarios/@usuario.id/edit', to: 'usuario#edit'
+
   resources :categoria
 
   resources :oferta

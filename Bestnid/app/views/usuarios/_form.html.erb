@@ -32,10 +32,11 @@
   
   <p>
     <%= t.label :contraseña %><br>
-    <%= t.password_field :contrasenia, :required => "required" %>
+    <%= t.password_field :contrasenia, :required => "required", :placeholder => "Mínimo 7 caracteres" %>
+  </p> 
   </p>
 
   <p>
-    <%= t.submit "Registrarse"%>
+    <%= t.submit "Confirmar"%>
   </p>
 <% end %>
