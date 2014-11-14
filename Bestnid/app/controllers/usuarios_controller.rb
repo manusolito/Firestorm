@@ -1,6 +1,9 @@
 class UsuariosController < ApplicationController
+<<<<<<< HEAD
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
+=======
+>>>>>>> origin/categorias
   # GET /usuarios
   # GET /usuarios.json
   def index
@@ -31,6 +34,7 @@ end
 
 
 def create
+<<<<<<< HEAD
   @usuario = Usuario.create(ad_params)
   @usuario.save
 
@@ -47,6 +51,20 @@ public
 
 def ad_params
   params.require(:usuario).permit(:nombre, :dni, :email, :tarjeta, :contrasenia)
+=======
+    @usuario = Usuario.new(us_params)
+
+    respond_to do |format|
+      if @usuario.save
+        format.html { redirect_to @usuario, notice: 'Usuario creado con exito.' }
+        format.json { render :show, status: :created, location: @usuario }
+      else
+        format.html { render :new }
+        format.json { render json: @usuario.errors, status: :unprocessable_entity }
+      end
+    end
+
+>>>>>>> origin/categorias
 end
 
 
@@ -72,16 +90,20 @@ def update
    end
 end
 
+<<<<<<< HEAD
 
   
 
 
+=======
+>>>>>>> origin/categorias
   # DELETE /usuarios/1
   # DELETE /usuarios/1.json
   def destroy
   
   end
 
+<<<<<<< HEAD
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_usuario
@@ -92,4 +114,10 @@ end
     def usuario_params
       
     end
+=======
+	private
+	def us_params
+        params.require(:usuario).permit(:nombre, :dni, :email, :tarjeta, :contrasenia, :url)
+     end
+>>>>>>> origin/categorias
 end

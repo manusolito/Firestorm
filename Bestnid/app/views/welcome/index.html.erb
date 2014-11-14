@@ -1,2 +1,18 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+
+<head>
+<style>
+p {
+    padding: 15px;
+}
+</style>
+</head>
+
+<p><%= link_to 'Listar Categorias', categoria_path %></p>
+
+<p><%= link_to 'Listar Productos', productos_path %></p>
+
+<p><%= link_to "Nuevo Usuario", controller: "usuarios", action: "new" %></p>
+
+<p><%= link_to "Nueva Categoria", controller: "categoria", action: "new" %></p>
+
+<p><%= link_to "Nuevo Producto", controller: "productos", action: "new" %></p>

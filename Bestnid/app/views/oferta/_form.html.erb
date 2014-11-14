@@ -1,0 +1,40 @@
+<head>
+<style>
+div {
+    padding: 5px;
+}
+</style>
+</head>
+<%= form_for :oferta, url: oferta_path do |f| %>
+
+ <% if @oferta.errors.any? %>
+    <div id="error_explanation">
+      <h2><font color="red"> La oferta no puede ser gardada:</font></h2>
+
+      <ul>
+      <% @oferta.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :motivo %><br>
+    <%= f.text_area :motivo, required: true, placeholder: 'Ingrese el motivo'%>
+  </div>
+  </br>
+  <div class="field">
+    <%= f.label :monto %><br>
+    <%= f.number_field :monto, required: true, placeholder: 'Ingrese el monto'%>
+  </div>
+  <div>
+  <%= f.label :producto_id %><br>
+  <%= f.select :producto_id, [Producto.find(params[:id])].collect { |p| [ p.nombre, p.id ] } %>
+  </div>
+  </br>
+  <div class="actions">
+    <%= f.submit "Enviar oferta" %>
+  </div>
+
+<% end %>
