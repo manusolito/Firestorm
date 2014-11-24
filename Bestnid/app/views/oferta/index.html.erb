@@ -1,0 +1,18 @@
+<h1>Mis ofertas</h1>
+
+<table style="width:100%">
+    <tr>
+      <th>Producto</th>
+      <th>       </th>
+      <th>       </th>
+    </tr>
+    
+    <% @oferta.each do |oferta| %>
+      <tr>
+        <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
+        <td>                    </td>
+		<td><%= link_to 'Ver detalles', oferta %></td>
+      </tr>
+    <% end %>
+</table>
+

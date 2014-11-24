@@ -1,0 +1,53 @@
+ <header>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            
+          <%= link_to root_path, class: 'navbar-brand' do %>
+            <%= image_tag "logo.png", title: "Logo", class: "logo" %>
+          <% end %>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ><%= link_to 'Sobre bestnid', static_pages_Sobre_bestnid_path %></li>
+                <li><%= link_to 'Subastar', new_producto_path %></li>
+                <li><%= link_to 'Crear categoría',new_categorium_path %></li>
+                <li><%= link_to 'Productos publicados', productos_path %></li>
+                <li><%= link_to 'Categorías', categoria_path %></li>
+                <li><%= link_to 'Ayuda', static_pages_Ayuda_path %></li>
+                <li><%= link_to 'Contacto', static_pages_Contacto_path %></li>
+				<% if logged_in? %>
+				   <li><%= link_to 'Mis ofertas', oferta_path %></li>
+                   <li><%= link_to 'Usuarios', usuarios_path %></li>
+                   <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                       Cuenta <b class="caret"></b>
+                     </a>
+                     <ul class="dropdown-menu">
+                       <li><%= link_to "Perfil", current_usuario %></li>
+					   <li><%= link_to "Configuracion", edit_usuario_path(current_usuario) %></li>
+					   <li><%= link_to "Eliminar cuenta", usuario_path(current_usuario), :method => :delete , data: { confirm: "Esta seguro de eliminar su cuenta?" }%></li>
+                       <li class="divider"></li>
+                       <li>
+                         <%= link_to "Cerrar Sesion", logout_path, method: "delete" %>
+                       </li>
+                     </ul>
+                   </li>
+                 <% else %>
+				   <li><%= link_to 'Registrarse', new_usuario_path %></li>
+                   <li><%= link_to "Iniciar Sesion", login_path %></li>
+                 <% end %>
+               </ul>
+                </li>
+              </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+
+    </div>
+  </header>

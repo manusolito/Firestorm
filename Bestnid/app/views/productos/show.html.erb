@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <%= image_tag(@producto.prourl, size: "200") %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @producto.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @producto.descripcion %>
+</p>
+
+<p>
+  <strong>Vencimiento:</strong>
+  <%= @producto.vencimiento %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= link_to @producto.categoria.nombre, controller: "categoria", action: "show", id: @producto.categoria.id %>
+</p>
+
+<p>
+  <%= link_to "Ofertar", new_ofertum_path(@producto.id) %>
+</p>
+
+<%= link_to 'Atras', productos_path %>

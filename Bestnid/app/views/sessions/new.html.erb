@@ -1,0 +1,28 @@
+<% provide(:title, "Iniciar Sesion") %>
+<h1>Iniciar Sesion</h1>
+
+  <% if flash[:danger] %>
+    <h4><font color="red"><div class="danger"><%= flash[:danger] %></div></font></h4>
+  <% end %>
+  
+<%= form_for(:session, url: login_path) do |f| %>
+ <div class="field">
+      <%= f.label :dni %><br>
+      <%= f.text_field :dni, :required =>"required"%>
+  </div>
+ <div class="field">
+      <%= f.label :password, "Contraseña"%><br>
+      <%= f.password_field :password,  :required =>"required" %>
+  </div>
+  <div class="action">
+      <%= f.label :remember_me, class: "checkbox inline" do %>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :remember_me %>
+      <span>Recordarme</span>
+      <% end %>
+  </div>
+  <div class="actions">
+   <%= f.submit "Iniciar Sesion", class: "btn btn-primary" %>
+   <% end %>
+
+    <p>¿Usuario nuevo? <%= link_to "Registrese!", new_usuario_path %></p>
+  </div>
