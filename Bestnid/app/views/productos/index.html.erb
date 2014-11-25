@@ -25,9 +25,9 @@ table, td {
       <tr>
 	    <td><%= image_tag(producto.prourl, size: "80") %></td>
         <td><%= producto.nombre %></td>
-        <td><%= producto.descripcion %></td>
+         <td><%= link_to 'Detalles', producto %></td>
         <td><%= producto.vencimiento %></td>
-        <td><%= link_to 'Mostrar', producto %></td>
+        <td><%= Categoria.find(producto.categoria_id).nombre %></td>
       </tr>
     <% end %>
   </tbody>
