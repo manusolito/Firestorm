@@ -1,6 +1,6 @@
 class CategoriaController < ApplicationController
   before_action :get_categoria, only: [:show,:destroy,:edit, :update]
-  
+
   def get_categoria
     @categoria = Categoria.find(params[:id])
   end

@@ -1,6 +1,12 @@
 class OfertaController < ApplicationController
-   before_action :get_oferta, only: [:show,:destroy,:edit, :update]
+  before_action :get_oferta, only: [:show,:destroy,:edit, :update]
   
+  before_action :Usuario_noLogueado, only: [:create, :new, :update]
+#Un usuario no logueado no podra ofertar
+  def Usuario_noLogueado
+     redirect_to(root_url) unless logged_in?
+  end
+
   def get_oferta
     @oferta = Oferta.find(params[:id])
   end

@@ -67,7 +67,7 @@ end
    def logged_out_usuario
     if logged_in?
 	  store_location
-      flash[:danger] = "Ya tiene una cuenta."
+      flash[:danger] = 'Ya tiene una cuenta'
       redirect_to root_url
     end
    end

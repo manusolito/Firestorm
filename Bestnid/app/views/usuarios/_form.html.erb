@@ -1,8 +1,8 @@
 <%= form_for (@usuario) do |t| %>
 <%if @usuario.errors.any? %>
 <div id="error_explanation">
-    <h2><font color="red"> El usuario no puede ser guardado:</font></h2>
-><ul>
+    <h2><font color="red"> Registro fallido. Verifique sus datos:</font></h2>
+<ul>
 <% @usuario.errors.full_messages.each do |m| %>
 <li><%= m%></li>
 <%end%>
@@ -13,7 +13,7 @@
   <div class="col-md-6 col-md-offser-3">
     
     <div class="field">
-    <%= t.label :url, "* URL de foto de perfil " %><br>
+     <%= t.label :url, "* URL de foto de perfil " %> <br>
     <%= t.text_field :url, :required => "required"%>
 	</div>
 	
@@ -42,13 +42,13 @@
 	</div>
   
     <div class="field">
-    <%= t.label :password, "* Contraseña" %><br>
+    <%= t.label :password, "* Password" %><br>
     <%= t.password_field :password, :required => "required",:placeholder => "Minimo 7 caracteres"%>
 	</div>
 	
     <div class="field">
-	<%= t.label :password_confirmation, "* Confirmacion de contraseña" %><br>
-    <%= t.password_field :password_confirmation, :required => "required", :placeholder => "Confirme su contraseña"%>
+	<%= t.label :password_confirmation, "* Confirmacion de password" %><br>
+    <%= t.password_field :password_confirmation, :required => "required", :placeholder => "Confirme su password"%>
 	</br>
     <%= "* Campos obligatorios" %>
     </div>
