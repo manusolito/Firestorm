@@ -1,43 +1,46 @@
+<% if @categoria.disponible==true %>
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Categoria:</strong>
   <%= @categoria.nombre %>
 </p>
 
-<% if  @categoria.productos.all.size == 0 %>
-    </br> </br>
-   <tr class="success"> <td colspan="3"> No hay productos publicados en esta categoría </tr>
-<% else %>  
-
-	  <p><strong>Productos:</strong></p>
+  <p><strong>Productos:</strong></p>
   
-	<head>
-	<style>
-	table, td {
-	   	 padding: 5px;
-	}
-	</style>
-	</head>
+<head>
+<style>
+table, td {
+    padding: 5px;
+}
+</style>
+</head>
 
-	<table style="width:100%">
- 	<tr>
-  		<th>Imagen</th>
-		<th>Nombre</th>
-		<th>Descripcion</th>
-		<th>Vencimiento</th>
-  	</tr>
-  	<%@categoria.productos.order(:id).each do |productos|%>
-  	  <tr>
-		  <td><%= image_tag(productos.prourl, size: "80") %></td>
-		  <td><%=productos.nombre%></td>
-		  <td><%=productos.descripcion%></td>
-		  <td><%=productos.vencimiento%></td>
-		  <td><%= link_to "Mostrar", controller: "productos", action: "show", id: productos.id %></td>
-		</tr>
-  	<%end%>
-	</table>
-<% end %>
+<table style="width:100%">
+ <tr>
+  	<th>Imagen</th>
+	<th>Nombre</th>
+	<th>Descripcion</th>
+	<th>Vencimiento</th>
+  </tr>
+  <%@categoria.productos.order(:id).each do |productos|%>
+    <% if productos.disponible==true %>
+    <tr>
+	  <td><%= image_tag(productos.prourl, size: "80") %></td>
+	  <td><%=productos.nombre%></td>
+	  <td><%=productos.descripcion%></td>
+	  <td><%=productos.vencimiento%></td>
+	  <td><%= link_to "Mostrar", controller: "productos", action: "show", id: productos.id %></td>
+	</tr>
+	<% end %>
+  <%end%>
+</table>
 
-</br> </br>
+
+<% if logged_in? and current_usuario.admin? %>
+<%= link_to "Eliminar categoria", categorium_path(@categoria.id), :method => :delete , data: { confirm: "Esta seguro de eliminar la categoria?" }%><br>
+<%end%>
 
 <%= link_to 'Atras', categoria_path %>
+<% else %>
+<strong>Direccion no disponible</strong>
+<% end %>

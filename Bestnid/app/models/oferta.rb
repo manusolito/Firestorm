@@ -1,5 +1,4 @@
 class Oferta < ActiveRecord::Base
-  
-   belongs_to :usuario
-   belongs_to :producto
+	belongs_to :usuario
+	belongs_to :producto
 end

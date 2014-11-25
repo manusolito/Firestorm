@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141124162650) do
 
   create_table "oferta", force: true do |t|
     t.text     "motivo"
-    t.float    "monto"
+    t.integer  "monto"
     t.integer  "usuario_id"
     t.integer  "producto_id"
     t.datetime "created_at"

@@ -1,3 +1,4 @@
+<% if @producto.disponible==true %>
 <p id="notice"><%= notice %></p>
 <p>
   <%= image_tag(@producto.prourl, size: "200") %>
@@ -30,3 +31,7 @@
 </p>
 
 <%= link_to 'Atras', productos_path %>
+
+<% else %>
+<strong>Direccion no disponible</strong>
+<% end %>
