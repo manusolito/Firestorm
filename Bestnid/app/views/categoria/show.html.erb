@@ -4,32 +4,40 @@
   <%= @categoria.nombre %>
 </p>
 
-  <p><strong>Productos:</strong></p>
-  
-<head>
-<style>
-table, td {
-    padding: 5px;
-}
-</style>
-</head>
+<% if  @categoria.productos.all.size == 0 %>
+    </br> </br>
+   <tr class="success"> <td colspan="3"> Todavía no hay productos en esta categoría </tr>
+<% else %>  
 
-<table style="width:100%">
- <tr>
-  	<th>Imagen</th>
-	<th>Nombre</th>
-	<th>Descripcion</th>
-	<th>Vencimiento</th>
-  </tr>
-  <%@categoria.productos.order(:id).each do |productos|%>
-    <tr>
-	  <td><%= image_tag(productos.prourl, size: "80") %></td>
-	  <td><%=productos.nombre%></td>
-	  <td><%=productos.descripcion%></td>
-	  <td><%=productos.vencimiento%></td>
-	  <td><%= link_to "Mostrar", controller: "productos", action: "show", id: productos.id %></td>
-	</tr>
-  <%end%>
-</table>
+	  <p><strong>Productos:</strong></p>
+  
+	<head>
+	<style>
+	table, td {
+	   	 padding: 5px;
+	}
+	</style>
+	</head>
+
+	<table style="width:100%">
+ 	<tr>
+  		<th>Imagen</th>
+		<th>Nombre</th>
+		<th>Descripcion</th>
+		<th>Vencimiento</th>
+  	</tr>
+  	<%@categoria.productos.order(:id).each do |productos|%>
+  	  <tr>
+		  <td><%= image_tag(productos.prourl, size: "80") %></td>
+		  <td><%=productos.nombre%></td>
+		  <td><%=productos.descripcion%></td>
+		  <td><%=productos.vencimiento%></td>
+		  <td><%= link_to "Mostrar", controller: "productos", action: "show", id: productos.id %></td>
+		</tr>
+  	<%end%>
+	</table>
+<% end %>
+
+</br> </br>
 
 <%= link_to 'Atras', categoria_path %>
