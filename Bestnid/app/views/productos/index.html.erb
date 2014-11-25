@@ -22,6 +22,7 @@ table, td {
 
   <tbody>
     <% @productos.each do |producto| %>
+    <% if productos.disponible==true %>
       <tr>
 	    <td><%= image_tag(producto.prourl, size: "80") %></td>
         <td><%= producto.nombre %></td>
@@ -29,6 +30,7 @@ table, td {
         <td><%= producto.vencimiento %></td>
         <td><%= Categoria.find(producto.categoria_id).nombre %></td>
       </tr>
+    <%end%>
     <% end %>
   </tbody>
 </table>

@@ -1,5 +1,13 @@
 <h1>Listar Categoria</h1>
 
+  <% if flash[:danger] %>
+    <h4><font color="red"><div class="danger"><%= flash[:danger] %></div></font></h4>
+  <% end %>
+  
+  <% if flash[:success] %>
+    <h4><font color="blue"><div class="success"><%= flash[:success] %></div></font></h4>
+  <% end %>
+
 <head>
 <style>
 table,td {
@@ -18,10 +26,12 @@ table,td {
 
   <tbody>
     <% @categoria.each do |categoria| %>
+	<% if categoria.disponible==true %>
       <tr>
         <td><%= categoria.nombre %></td>
         <td><%= link_to 'Mostrar', categoria %></td>
       </tr>
+    <%end%>
     <% end %>
   </tbody>
 </table>

@@ -1,19 +1,7 @@
 class CategoriaController < ApplicationController
-  before_action :get_categoria, only: [:show,:destroy,:edit, :update]
-  before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
-
+  before_action :logged_in_admin, only: [:new, :create, :edit, :update, :destroy]
+  
   #Un usuario no admin no podra crear, edit , etc categoria
-  def Usuario_noAdmin
-     if logged_in?
-     redirect_to(root_url) unless current_usuario.admin?
-     else
-     redirect_to(root_url)  
-     end
-  end
-
-  def get_categoria
-    @categoria = Categoria.find(params[:id])
-  end
 
   def index
     @categoria = Categoria.all
@@ -40,10 +28,45 @@ class CategoriaController < ApplicationController
         format.json { render json: @categoria.errors, status: :unprocessable_entity }
       end
     end
-
-end
+  end
+  
+  def destroy
+  	@categoria = Categoria.find(params[:id])
+	if @categoria.productos.count == 0
+	   @categoria.destroy
+	   flash[:success] = "Categoria Eliminada"
+       redirect_to categoria_url
+	else
+	   bool=false
+	   @categoria.productos.each do |p|
+	     if p.disponible==true
+		   	bool=true
+	     end
+	   end
+	   if bool==false
+	     @categoria.disponible = false
+	     @categoria.save
+         flash[:success] = "Categoria Eliminada"
+         redirect_to categoria_url
+	   else
+	     flash[:success] = "La Categoria No Puede Ser Eliminada"
+         redirect_to categoria_url
+	   end
+	end
+  end
+  
 	private
 	def categorium_params
       params.require(:categoria).permit(:nombre)
+    end
+	def logged_in_admin
+      if !logged_in?
+	    store_location
+        flash[:danger] = "Por Favor Inicie Sesion."
+        redirect_to login_url
+	  else
+	    redirect_to(root_url) unless current_usuario.admin?
+		flash[:danger] = "No Tiene Los Permisos Para Acceder Alli."
+	  end
     end
 end
