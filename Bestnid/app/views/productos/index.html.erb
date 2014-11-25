@@ -22,7 +22,7 @@ table, td {
 
   <tbody>
     <% @productos.each do |producto| %>
-    <% if productos.disponible==true %>
+    <% if producto.disponible==true %>
       <tr>
 	    <td><%= image_tag(producto.prourl, size: "80") %></td>
         <td><%= producto.nombre %></td>
