@@ -1,5 +1,15 @@
 class CategoriaController < ApplicationController
   before_action :get_categoria, only: [:show,:destroy,:edit, :update]
+  before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
+
+  #Un usuario no admin no podra crear, edit , etc categoria
+  def Usuario_noAdmin
+     if logged_in?
+     redirect_to(root_url) unless current_usuario.admin?
+     else
+     redirect_to(root_url)  
+     end
+  end
 
   def get_categoria
     @categoria = Categoria.find(params[:id])

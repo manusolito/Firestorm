@@ -1,40 +1,18 @@
-<% if  @oferta.all.size == 0 %>
-    </br> </br>
-   <tr class="success"> <td colspan="3"> ¡Aún no realizaste ninguna oferta en Bestnid! </tr>
-<% else %>
+<h1>Mis ofertas</h1>
+
+<table style="width:100%">
+    <tr>
+      <th>Producto</th>
+      <th>       </th>
+      <th>       </th>
+    </tr>
     
-  <h1>Mis ofertas</h1>
-  <table style="width:100%">
-     <tr>
-       <th>Producto</th>
-       <th> Estado </th>
-       <th>       </th>
-       <th>       </th>
-     </tr>
-    
-
-     <% @oferta.each do |oferta| %>
-        <tr>
-         <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
-         <% if oferta.producto.vencimiento ==  DateTime.now.to_date  %>
-             <% if oferta.producto.ofertagano_id == oferta.id %>
-               <td> Finalizada </td>
-               <td>              </td>
-               <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
-             <% else %>
-               <td> Finalizada </td>
-               <td>              </td>
-               <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
-             <% end %>
-         <% else %>
-             <td> Activa </td>
-             <td>              </td>
-             <td><%= link_to 'Ver detalles', oferta %></td>
-         <% end %>
-        </tr>
-      <% end %>
-  </table>
-
-<% end %>
-
+    <% @oferta.each do |oferta| %>
+      <tr>
+        <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
+        <td>                    </td>
+		<td><%= link_to 'Ver detalles', oferta %></td>
+      </tr>
+    <% end %>
+</table>
 
