@@ -42,6 +42,7 @@ class OfertaController < ApplicationController
 
   def create
    @oferta = Oferta.new(oferta_params)
+   @oferta.usuario(Usuario.find(params[:id]).id)
 
     respond_to do |format|
       if @oferta.save
@@ -56,6 +57,6 @@ class OfertaController < ApplicationController
   
     private
     def oferta_params           
-       params.require(:oferta).permit(:motivo, :monto, :producto_id)
+       params.require(:oferta).permit(:motivo, :monto, :producto_id, :usuario_id)
     end
 end
