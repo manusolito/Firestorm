@@ -1,12 +1,20 @@
 class ProductosController < ApplicationController
   before_action :get_producto, only: [:show,:destroy, :update]
-  
   before_action :Usuario_noLogueado, only: [:create, :new]
+  before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
+
 #Un usuario no logueado no podra subastar un producto
   def Usuario_noLogueado
      redirect_to(root_url) unless logged_in?
   end
-
+ 
+ 
+  #Admin no podra subastar un producto
+  def Usuario_noAdmin
+     redirect_to(root_url) if current_usuario.admin?
+  end
+ 
+  
   def get_producto
     @producto = Producto.find(params[:id])
   end

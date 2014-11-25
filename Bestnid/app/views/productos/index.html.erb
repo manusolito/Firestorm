@@ -35,4 +35,6 @@ table, td {
 
 <br>
 
+<% if logged_in? and (not current_usuario.admin?)  %>
 <%= link_to 'Nuevo Producto', :action => :new %>
+<%end%>

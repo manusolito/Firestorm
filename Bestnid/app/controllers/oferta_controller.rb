@@ -1,10 +1,16 @@
 class OfertaController < ApplicationController
   before_action :get_oferta, only: [:show,:destroy,:edit, :update]
-  
-  before_action :Usuario_noLogueado, only: [:create, :new, :update]
+  before_action :Usuario_noLogueado, only: [:create, :new, :edit, :update]
+  before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
+
 #Un usuario no logueado no podra ofertar
   def Usuario_noLogueado
      redirect_to(root_url) unless logged_in?
+  end
+ 
+  #Admin no podra ofertar por un producto
+  def Usuario_noAdmin
+     redirect_to(root_url) if current_usuario.admin?
   end
 
   def get_oferta

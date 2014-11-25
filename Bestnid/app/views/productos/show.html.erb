@@ -24,7 +24,7 @@
 </p>
 
 <p>
-  <% if logged_in? %>
+  <% if logged_in? and (not current_usuario.admin) %>
   <%= link_to "Ofertar", new_ofertum_path(@producto.id) %>
   <% end %>
 </p>
