@@ -26,11 +26,12 @@ div {
   </br>
   <div class="field">
     <%= f.label :monto %><br>
-    <%= f.number_field :monto, required: true, placeholder: 'Ingrese el monto'%>
+    <%= f.number_field :monto, required: true, placeholder: 'Ingrese el monto', min: 0%>
   </div>
   <%= f.hidden_field :producto_id, :value => params[:format]%>
   
 </br>
+
   <div class="actions">
     <%= f.submit "Enviar oferta", class: "btn btn-primary" %>
   </div>
