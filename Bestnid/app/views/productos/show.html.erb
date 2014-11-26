@@ -29,6 +29,8 @@
   <%= link_to "Ofertar", new_ofertum_path(@producto.id) %>
   <% end %>
 </p>
+<%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Esta seguro de eliminar el producto?" }%><br>
+</p>
 
 <%= link_to 'Atras', productos_path %>
 

@@ -45,7 +45,12 @@ class ProductosController < ApplicationController
       end
     end
   end
-
+  def destroy
+      @producto.disponible = false
+         @producto.save
+           flash[:success] = "Producto Eliminado"
+           redirect_to producto_url
+    end
   private
     def producto_params
       params.require(:productos).permit(:nombre, :descripcion, :vencimiento, :prourl, :categoria_id )
