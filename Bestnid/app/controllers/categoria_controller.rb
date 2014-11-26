@@ -64,8 +64,8 @@ class CategoriaController < ApplicationController
 	    store_location
         flash[:danger] = "Por Favor Inicie Sesion."
         redirect_to login_url
-	  else
-	    redirect_to(root_url) unless current_usuario.admin?
+	  elseif !current_usuario.admin?
+	    redirect_to(root_url)
 		flash[:danger] = "No Tiene Los Permisos Para Acceder Alli."
 	  end
     end
