@@ -26,7 +26,6 @@ class OfertaController < ApplicationController
 
   def new
    @oferta = Oferta.new 
-   @oferta.producto=Producto.find(params[:format])
   end
 
   def edit
@@ -40,6 +39,7 @@ class OfertaController < ApplicationController
 
   def create
    @oferta = Oferta.new(oferta_params)
+   @oferta.producto=Producto.find(@oferta.producto_id)
    @oferta.usuario=current_usuario
    
     respond_to do |format|

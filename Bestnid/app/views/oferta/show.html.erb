@@ -1,4 +1,4 @@
-<% if @oferta.usuario.id == current_usuario.id %>
+<% if @oferta.usuario == current_usuario %>
 <p>
   <strong>Motivo:</strong>
   <%= @oferta.motivo %>

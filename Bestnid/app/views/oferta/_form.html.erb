@@ -28,8 +28,7 @@ div {
     <%= f.label :monto %><br>
     <%= f.number_field :monto, required: true, placeholder: 'Ingrese el monto'%>
   </div>
-  <%= f.number_field :usuario_id, placeholder: current_usuario.id %>
-  <%= f.number_field :producto_id, placeholder: params[:format] %>
+  <%= f.hidden_field :producto_id, :value => params[:format]%>
   
 </br>
   <div class="actions">
