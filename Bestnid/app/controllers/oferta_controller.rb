@@ -43,12 +43,12 @@ class OfertaController < ApplicationController
    @oferta.usuario=current_usuario
    
     respond_to do |format|
-      if @oferta.save
+      if not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id =>@oferta.producto.id) and @oferta.save
         format.html { redirect_to @oferta, notice: 'Su oferta fue enviada exitosamente.' }
         format.json { render :show, status: :created, location: @oferta }
       else
-        format.html { render :new }
-        format.json { render json: @oferta.errors, status: :unprocessable_entity }
+        format.html{redirect_to(root_url)}
+		flash[:danger] = 'Ya oferto este producto'
       end
     end
   end
