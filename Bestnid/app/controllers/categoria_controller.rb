@@ -18,6 +18,11 @@ class CategoriaController < ApplicationController
   
   def create
     @categoria = Categoria.new(categorium_params)
+    @asd=@categoria.nombre
+	if Categoria.where(:nombre => @asd).present? and not Categoria.where(:nombre => @asd).first.disponible
+	  @categoria = Categoria.find(Categoria.where(:nombre => @asd).first.id)
+	  @categoria.disponible = true
+	end
 
     respond_to do |format|
       if @categoria.save

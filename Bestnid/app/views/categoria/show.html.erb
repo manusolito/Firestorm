@@ -27,9 +27,8 @@ table, td {
     <tr>
 	  <td><%= image_tag(productos.prourl, size: "80") %></td>
 	  <td><%=productos.nombre%></td>
-	  <td><%=productos.descripcion%></td>
+	  <td><%=link_to 'Detalles', productos%></td>
 	  <td><%=productos.vencimiento%></td>
-	  <td><%= link_to "Mostrar", controller: "productos", action: "show", id: productos.id %></td>
 	</tr>
 	<% end %>
   <%end%>
