@@ -1,5 +1,4 @@
 class OfertaController < ApplicationController
-  before_action :get_oferta, only: [:show,:destroy,:edit, :update]
   before_action :Usuario_noLogueado, only: [:create, :new, :edit, :update]
   before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
 
@@ -27,14 +26,13 @@ class OfertaController < ApplicationController
 
   def new
    @oferta = Oferta.new 
+   @oferta.producto=Producto.find(params[:format])
   end
 
   def edit
   end
 
   def update
-    @oferta.update(params.require(:oferta).permit([:motivo,:monto]))  
-    redirect_to @oferta, notice: 'Su oferta fue enviada exitosamente.' 
   end
 
   def destroy 
@@ -42,7 +40,8 @@ class OfertaController < ApplicationController
 
   def create
    @oferta = Oferta.new(oferta_params)
-
+   @oferta.usuario=current_usuario
+   
     respond_to do |format|
       if @oferta.save
         format.html { redirect_to @oferta, notice: 'Su oferta fue enviada exitosamente.' }
@@ -56,6 +55,6 @@ class OfertaController < ApplicationController
   
     private
     def oferta_params           
-       params.require(:oferta).permit(:motivo, :monto, :producto_id)
+       params.require(:oferta).permit(:motivo, :monto, :producto_id, :usuario_id)
     end
 end

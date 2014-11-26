@@ -32,6 +32,7 @@ class ProductosController < ApplicationController
 
   def create
     @producto = Producto.new(producto_params)
+	@producto.usuario=current_usuario
 	@producto.categoria(Categoria.find(@producto.categoria_id))
 
     respond_to do |format|

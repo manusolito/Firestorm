@@ -37,6 +37,7 @@
                      </a>
                      <ul class="dropdown-menu">
                        <li><%= link_to "Perfil", current_usuario %></li>
+					   <li><%= link_to "Mis Ofertas", oferta_path %></li>
              <li><%= link_to "Configuracion", edit_usuario_path(current_usuario) %></li>
              <li><%= link_to "Eliminar cuenta", usuario_path(current_usuario), :method => :delete , data: { confirm: "Esta seguro de eliminar su cuenta?" }%></li>
                        <li class="divider"></li>

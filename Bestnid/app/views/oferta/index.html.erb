@@ -7,7 +7,7 @@
       <th>       </th>
     </tr>
     
-    <% @oferta.each do |oferta| %>
+    <% @oferta.where(:usuario != current_usuario).each do |oferta| %>
       <tr>
         <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
         <td>                    </td>

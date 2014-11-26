@@ -5,7 +5,7 @@ div {
 }
 </style>
 </head>
-<%= form_for @oferta do |f| %>
+<%= form_for :oferta, url:oferta_path do |f| %>
 
  <% if @oferta.errors.any? %>
     <div id="error_explanation">
@@ -28,6 +28,8 @@ div {
     <%= f.label :monto %><br>
     <%= f.number_field :monto, required: true, placeholder: 'Ingrese el monto'%>
   </div>
+  <%= f.number_field :usuario_id, placeholder: current_usuario.id %>
+  <%= f.number_field :producto_id, placeholder: params[:format] %>
   
 </br>
   <div class="actions">

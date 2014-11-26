@@ -1,4 +1,4 @@
-
+<% if @oferta.usuario.id == current_usuario.id %>
 <p>
   <strong>Motivo:</strong>
   <%= @oferta.motivo %>
@@ -15,4 +15,7 @@
 
 <%= link_to 'Atras', oferta_path %>
 
+<% else %>
+<strong>Direccion no disponible</strong>
+<% end %>
 
