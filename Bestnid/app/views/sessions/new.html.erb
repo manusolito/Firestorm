@@ -1,10 +1,38 @@
+<style>
+.error{
+  position: absolute;
+    left: 10px;
+  font-size: 100%;
+    border: 5px solid #a1a1a1;
+    padding: 5px 80px; 
+    background: #FF3030;
+    width: 450px;
+    border-radius: 15px;
+
+}
+.ventanaBorder{
+  font-size: 85%;
+    margin-left:auto;
+    margin-right:auto;
+    border: 10px solid #a1a1a1;
+    padding: 0px 50px; 
+    background: #B8B8B8;
+    width: 330px;
+    border-radius: 15px;
+}
+</style>
+
+<div class="ventanaBorder"> 
+  
 <% provide(:title, "Iniciar Sesion") %>
 <h1>Iniciar Sesion</h1>
 
-  <% if flash[:danger] %>
-    <h4><font color="red"><div class="danger"><%= flash[:danger] %></div></font></h4>
-  <% end %>
-  
+<% if flash[:danger] %>  
+  <div class="error">
+    <h2><font color="white"> Inicio de sesion fallido. </font></h2>
+    <h4><font color="white"><div class="danger"><%= flash[:danger] %></div></font></h4>
+  </div>
+<%end%>  
 <%= form_for(:session, url: login_path) do |f| %>
  <div class="field">
       <%= f.label :dni %><br>
@@ -26,3 +54,4 @@
 
     <p>¿Usuario nuevo? <%= link_to "Registrese!", new_usuario_path %></p>
   </div>
+</div>

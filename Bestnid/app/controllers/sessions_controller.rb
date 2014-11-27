@@ -11,8 +11,7 @@ class SessionsController < ApplicationController
 	  remember usuario
       redirect_back_or usuario
     else
-      flash[:notice] = 'Error al iniciar sesion'
-      flash[:danger] = 'DNI o Password invalidos'
+      flash[:danger] = 'DNI o password invalidos'
       render 'new'
     end
   end
