@@ -34,7 +34,9 @@ class OfertaController < ApplicationController
   def update
   end
 
-  def destroy 
+  def destroy
+    @oferta.destroy
+    redirect_to oferta_path, :notice => "Su oferta eliminada"
   end
 
   def create

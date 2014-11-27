@@ -15,7 +15,8 @@ table, td {
       <th>Nombre</th>
       <th>Descripcion</th>
       <th>Vencimiento</th>
-	  <th>Categoria</th>
+	    <th>Categoria</th>
+      <th>         </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,7 +29,10 @@ table, td {
         <td><%= producto.nombre %></td>
          <td><%= link_to 'Detalles', producto %></td>
         <td><%= producto.vencimiento %></td>
-        <td><%= Categoria.find(producto.categoria_id).nombre %></td>
+        <td><%= link_to Categoria.find(producto.categoria_id).nombre, Categoria.find(producto.categoria_id) %></td>
+         <% if logged_in? and (not current_usuario.admin) %>
+             <td><%= link_to "Ofertar", new_ofertum_path(producto.id) %></td>
+         <% end %>
       </tr>
     <%end%>
     <% end %>
