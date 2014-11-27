@@ -39,3 +39,29 @@
 <% else %>
 <strong>Direccion no disponible</strong>
 <% end %>
+
+
+
+<% "if @producto.vencimiento<DateTime.now.to_date"   %>
+  <h1>elegir ganador</h1>
+ 
+
+  <table style="width:100%">
+   <tr>
+   <th>motivo</th>
+   <th>monto</th>
+   <th>elegir</th>
+  
+   </tr>
+   <%@producto.ofertas.each do |e|%>
+    <tr>
+    <% if e.producto_id==@producto.id %>
+    <td><%=e.motivo%></td>
+    <td><%=e.monto%><td>
+     <td>#falta el link to a el metodo ganador<td>
+
+
+     </p>
+  <% end %>
+  <% end %>
+</table>
