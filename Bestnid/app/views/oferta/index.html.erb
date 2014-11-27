@@ -1,4 +1,4 @@
-<% if  @oferta.all.size == 0 %>
+<% if  current_usuario.ofertas.all.size == 0 %>
     </br> </br>
    <tr class="success"> <td colspan="3"> ¡Aún no realizaste ninguna oferta en Bestnid! </tr>
 <% else %>
@@ -24,13 +24,11 @@
                <td>              </td>
                <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
                <td>              </td>
-               <% oferta.destroy %>
              <% else %>
                <td> Finalizada </td>
                <td>              </td>
                <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
                <td>              </td>
-               <% oferta.destroy %>
              <% end %>
          <% else %>
              <td> Activa </td>
