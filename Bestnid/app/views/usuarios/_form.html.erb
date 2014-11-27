@@ -1,7 +1,7 @@
 <%= form_for (@usuario) do |t| %>
 <%if @usuario.errors.any? %>
-<div id="error_explanation">
-    <h2><font color="red"> Registro fallido. Verifique sus datos:</font></h2>
+<div class="error">
+    <h2><font color="black"> Registro fallido. Verifique sus datos:</font></h2>
 <ul>
 <% @usuario.errors.full_messages.each do |m| %>
 <li><%= m%></li>
@@ -11,9 +11,9 @@
 <%end%>
   <div class="row">
   <div class="col-md-6 col-md-offser-3">
-    
+  
     <div class="field">
-     <%= t.label :url, "* URL de foto de perfil " %> <br>
+     <%= t.label :url, "* URL de foto" %> <br>
     <%= t.text_field :url, :required => "required"%>
 	</div>
 	
@@ -23,7 +23,7 @@
 	</div>
   
     <div class="field">
-    <%= t.label :dni, "* Dni" %><br>
+    <%= t.label :dni, "* Dni" %>
 	<% if logged_in? %>
 	<%= t.number_field :dni, :disabled=>true, :required => "required" %>
 	<% else %>
@@ -32,36 +32,38 @@
 	</div>
 
 	<div class="field">
-    <%= t.label :email, "* Email" %><br>
+    <%= t.label :email, "* Email" %>
     <%= t.email_field :email , :required => "required", :placeholder => "alguien@ejemplo.com"%>
 	</div>
 
 	<div class="field">
-    <%= t.label :tarjeta, "* Tarjeta" %><br>
+    <%= t.label :tarjeta, "* Tarjeta" %>
     <%= t.number_field :tarjeta, :required => "required", :size => "1",:placeholder => "16 numeros"%>
 	</div>
   
     <div class="field">
-    <%= t.label :password, "* Password" %><br>
+    <%= t.label :password, "* Password" %>
     <%= t.password_field :password, :required => "required",:placeholder => "Minimo 7 caracteres"%>
 	</div>
 	
     <div class="field">
-	<%= t.label :password_confirmation, "* Confirmacion de password" %><br>
+	<%= t.label :password_confirmation, "* Confirmacion de  password" %>
     <%= t.password_field :password_confirmation, :required => "required", :placeholder => "Confirme su password"%>
-	</br>
-    <%= "* Campos obligatorios" %>
+	
     </div>
-	</br>
 
-    <div class="actions">
+	<div class="actions">
+      
+        <p class="oblique"> <%= "* Campos obligatorios" %></p>
+    
     <% if logged_in? %>
 	<%= t.submit "Actualizar", class: "btn btn-primary" %>
 	<% else %>
     <%= t.submit "Registrarse", class: "btn btn-primary" %>
 	<% end %>
-
 	</div>
 <% end %>
   </div>
 </div>
+
+

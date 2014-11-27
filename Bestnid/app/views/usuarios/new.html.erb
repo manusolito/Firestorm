@@ -1,5 +1,38 @@
+<style>
+
+.error{
+	position: absolute;
+    left: 10px;
+	font-size: 100%;
+    border: 5px solid #a1a1a1;
+    padding: 5px 80px; 
+    background: #FF3030;
+    width: 450px;
+    border-radius: 15px;
+
+}
+   
+p.oblique {
+    font-style: oblique;
+}
+
+.ventanaBorder {
+	font-size: 85%;
+    margin-left:auto;
+    margin-right:auto;
+    border: 10px solid #a1a1a1;
+    padding: 0px 50px; 
+    background: #B8B8B8;
+    width: 330px;
+    border-radius: 15px;
+}
+</style>
+
+<div class="ventanaBorder">  
 <% provide(:title, "Crear Usuario") %>
-<h1>Cree su Perfil</h1>
+
+<h1>Crear cuenta</h1>
 <%= render 'form' %>
 
 <%= link_to 'Cancelar', root_path %>
+</div>
