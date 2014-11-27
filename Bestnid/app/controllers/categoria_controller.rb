@@ -1,7 +1,15 @@
 class CategoriaController < ApplicationController
   before_action :logged_in_admin, only: [:new, :create, :edit, :update, :destroy]
-  
+  before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
+
   #Un usuario no admin no podra crear, edit , etc categoria
+  def Usuario_noAdmin
+     if logged_in?
+     redirect_to(root_url) unless current_usuario.admin?
+     else
+     redirect_to(root_url)  
+     end
+  end  
 
   def index
     @categoria = Categoria.all
@@ -64,7 +72,8 @@ class CategoriaController < ApplicationController
 	def categorium_params
       params.require(:categoria).permit(:nombre)
     end
-	def logged_in_admin
+	
+  def logged_in_admin
       if !logged_in?
 	    store_location
         flash[:danger] = "Por Favor Inicie Sesion."
