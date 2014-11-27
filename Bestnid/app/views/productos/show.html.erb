@@ -29,7 +29,9 @@
   <%= link_to "Ofertar", new_ofertum_path(@producto.id) %>
   <% end %>
 </p>
+<% if logged_in? and (current_usuario.admin)%>
 <%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Esta seguro de eliminar el producto?" }%><br>
+<% end %>
 </p>
 
 <%= link_to 'Atras', productos_path %>
