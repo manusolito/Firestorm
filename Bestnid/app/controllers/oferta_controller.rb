@@ -35,8 +35,9 @@ class OfertaController < ApplicationController
   end
 
   def destroy
+    @oferta = current_usuario.ofertas.find(params[:id])
     @oferta.destroy
-    redirect_to oferta_path, :notice => "Su oferta eliminada"
+    redirect_to oferta_path, :notice => "Su oferta fue eliminada"
   end
 
   def create
