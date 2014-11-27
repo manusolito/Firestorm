@@ -13,6 +13,6 @@ class Producto < ActiveRecord::Base
 
 	belongs_to :categoria
 	belongs_to :usuario
-	has_many :ofertas
+	has_many :ofertas, dependent: :destroy
 end
 
