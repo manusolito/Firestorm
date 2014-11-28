@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-
+  get   'confirmation'   => 'usuarios#confirmation'
+  #post  'destroy'   => 'usuarios#delete'
+  
   get 'static_pages/Sobre_bestnid', to: 'static_pages#Sobre_Bestnid'
 
   get 'static_pages/Ayuda', to: 'static_pages#Ayuda'
@@ -18,6 +20,10 @@ Rails.application.routes.draw do
   post '/oferta/:id', to: 'oferta#show'
 
   post '/oferta', to: 'oferta#create' 
+  
+  #post '/usuarios' =>'usuarios#confirmation', :as => :confirmation
+
+  
 
   resources :categoria
 
@@ -26,6 +32,7 @@ Rails.application.routes.draw do
   resources :productos
 
   resources :usuarios
+  
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

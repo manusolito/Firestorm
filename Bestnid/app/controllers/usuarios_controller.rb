@@ -47,10 +47,46 @@ end
     end
   end
 
+  def confirmation
+    @usuario = current_usuario
+  end
+  
   def destroy
-    Usuario.find(params[:id]).destroy
-    flash[:success] = "Usuario Eliminado"
-    redirect_to usuarios_url
+      usua = Usuario.find(params[:id])
+      bool=false
+	  usua.productos.each do |p|
+	    if (p.disponible==true) and (p.ofertagano_id == nil) then
+        	bool=true
+	    end
+	  end
+	  if bool==false
+	     usua.disponible = false
+	     usua.ofertas.each do |o|
+	       if (o.producto.ofertagano_id == nil) then
+	    	   o.destroy
+	       end
+         end
+    	 if usua.authenticate(params[:password])
+		   usua.password=params[:password]
+		   usua.save
+		   log_out
+           flash[:success] = "Usuario Eliminado"
+		 else
+		   flash[:success] = "Password Incorrecto"
+		 end
+     else
+	     flash[:danger] = "El Usuario No Puede Ser Eliminado. Tiene Subastas Pendientes"
+	  end
+	  redirect_to root_url
+  
+  
+  
+  
+  
+  
+    #Usuario.find(params[:id]).destroy
+    #flash[:success] = "Usuario Eliminado"
+    #redirect_to usuarios_url
   end
   
   private

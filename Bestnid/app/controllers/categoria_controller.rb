@@ -53,7 +53,7 @@ class CategoriaController < ApplicationController
          flash[:success] = "Categoria Eliminada"
          redirect_to categoria_url
 	   else
-	     flash[:success] = "La Categoria No Puede Ser Eliminada"
+	     flash[:danger] = "La Categoria No Puede Ser Eliminada"
          redirect_to categoria_url
 	   end
 	end

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     usuario	= Usuario.find_by(dni: params[:session][:dni])
-    if usuario && usuario.authenticate(params[:session][:password])
+    if usuario && usuario.authenticate(params[:session][:password]) && usuario.disponible == true
 	  log_in usuario
     flash[:notice] = 'Has iniciado sesion correctamente'
 	  params[:session][:remember_me] == '1' ? remember(usuario) : forget(usuario)
