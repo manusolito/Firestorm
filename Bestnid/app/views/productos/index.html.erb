@@ -129,6 +129,7 @@ table, td {
       <th class="text-center">Descripcion</th>
       <th class="text-center">Vencimiento</th>
 	    <th class="text-center">Categoria</th>
+      <th class="text-center"></th>
     
     </tr>
   </thead>
@@ -143,7 +144,7 @@ table, td {
         <td class="text-center"><%= producto.vencimiento %></td>
         <td class="text-center"><%= link_to Categoria.find(producto.categoria_id).nombre, Categoria.find(producto.categoria_id) %></td>
          <% if logged_in? and (not current_usuario.admin and (current_usuario != producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => producto.id))%>
-             <td><%= link_to "Ofertar", new_ofertum_path(producto.id) %></td>
+             <td class="text-center"><%= link_to "Ofertar", new_ofertum_path(producto.id) %></td>
          <% end %>
       </tr>
     <%end%>
