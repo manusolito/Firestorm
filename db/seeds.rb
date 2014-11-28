@@ -47,5 +47,23 @@ Oferta.create!(motivo: "Super tiernis",
                monto: "100",
 			   usuario: Usuario.find_by(nombre: "Le man"),
 			   producto: Producto.find_by(nombre: "Perro"))
+Producto.create!(nombre: "Gato",
+               descripcion: "Es Mudo",
+			   categoria: "Mascotas",
+			   prourl: "http://fotos0.mundofotos.net/2009/30_04_2009/sumari1241063254/gato-blanco.jpg",
+			   usuario: Usuario.find_by(dni: "12345678"),
+			   categoria: Categoria.find_by(nombre: "Mascotas"),
+			   vencimiento: d)
+Oferta.create!(motivo: "No se, me ceba",
+               monto: "12",
+			   usuario: Usuario.find_by(nombre: "El pillo"),
+			   producto: Producto.find_by(nombre: "Gato"))
+Oferta.create!(motivo: "Es blanco como mis canas",
+               monto: "32",
+			   usuario: Usuario.find_by(nombre: "Le man"),
+			   producto: Producto.find_by(nombre: "Gato"))
+o=Producto.find_by(nombre: "Gato")
+o.ofertagano_id=Oferta.find_by(motivo: "Es blanco como mis canas").id
+o.save
 			   
 			   
