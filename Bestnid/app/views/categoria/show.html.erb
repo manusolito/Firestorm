@@ -1,37 +1,158 @@
-<% if @categoria.disponible==true %>
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Categoria:</strong>
-  <%= @categoria.nombre %>
-</p>
+<style>
+/*** Estilo de la tabla **/
 
-  <p><strong>Productos:</strong></p>
+.table-fill {
+  background: white;
+  border-radius:5px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+ 
+th {
+  color:#778899;
+  background:#1b1e24;  /*color encabezado*/
+  border-bottom:5px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:23px;
+  font-weight: 100;
+  padding:24px;
+  text-align:center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
   
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;  /*color letra dentro de tabla*/
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+tr:hover td {
+  background:#C8C8DA; /*color cuando el mouse encima*/
+  color:#FFFFFF; /*fondo color de letras tabla*/
+  border-top: 3px solid #22262e;
+  border-bottom: 3px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EFEFFF;
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #000000;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+
+</style>
+
+<h1><center>Productos de categoria: <%=@categoria.nombre%> </center></h1>
+
+  <% if flash[:danger] %>
+    <h4><font color="red"><div class="danger"><%= flash[:danger] %></div></font></h4>
+  <% end %>
+  
+  <% if flash[:success] %>
+    <h4><font color="blue"><div class="success"><%= flash[:success] %></div></font></h4>
+  <% end %>
+
 <head>
 <style>
-table, td {
+table,td {
     padding: 5px;
 }
 </style>
-</head>
 
-<table style="width:100%">
+
+
+<% if @categoria.disponible==true %>
+<p id="notice"><%= notice %></p>
+
+
+ <table class= "table-fill">
+  <thead>
  <tr>
-  	<th>Imagen</th>
-	<th>Nombre</th>
-	<th>Descripcion</th>
-	<th>Vencimiento</th>
+  	<th class="text-center">Imagen</th>
+	<th class="text-center">Nombre</th>
+	<th class="text-center">Descripcion</th>
+	<th class="text-center">Vencimiento</th>
   </tr>
+</thead>
+
+<tbody class="table-hover">
   <%@categoria.productos.order(:id).each do |productos|%>
     <% if productos.disponible==true %>
     <tr>
-	  <td><%= image_tag(productos.prourl, size: "80") %></td>
-	  <td><%=productos.nombre%></td>
-	  <td><%=link_to 'Detalles', productos%></td>
-	  <td><%=productos.vencimiento%></td>
+	  <td class="text-center"><%= image_tag(productos.prourl, size: "80") %></td>
+	  <td class="text-center"><%=productos.nombre%></td>
+	  <td class="text-center"><%=link_to 'Detalles', productos%></td>
+	  <td class="text-center"><%=productos.vencimiento%></td>
 	</tr>
 	<% end %>
   <%end%>
+ </tbody>
 </table>
 
 
