@@ -128,7 +128,7 @@ td.text-right {
      <% if oferta.usuario == current_usuario %>
         <tr>
          <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
-         <% if oferta.producto.vencimiento ==  DateTime.now.to_date  %>
+         <% if oferta.producto.vencimiento =  DateTime.now.to_date  %>
              <% if oferta.producto.ofertagano_id == oferta.id %>
                <td> Finalizada </td>
                <td>              </td>
