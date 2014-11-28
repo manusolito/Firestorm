@@ -1,10 +1,12 @@
 <%= form_for (@usuario) do |t| %>
 <%if @usuario.errors.any? %>
 <div class="error">
-    <h2><font color="black"> Registro fallido. Verifique sus datos:</font></h2>
+    <h2><font color="white"> Registro fallido. Verifique sus datos:</font></h2>
 <ul>
 <% @usuario.errors.full_messages.each do |m| %>
-<li><%= m%></li>
+<li><font color="white">
+    <%= m%> </font>
+</li>
 <%end%>
 </ul>
 </div>
