@@ -5,3 +5,19 @@
     <h4><font color="blue"><div class="success"><%= flash[:success] %></div></font></h4>
   <% end %>
 
+<div class="container marketing">
+
+     
+		<% @productos = Producto.all %>
+
+		<% @productos.each do |p| %>
+					<div class="col-lg-3">
+        						<%=  image_tag(p.prourl, size: "120", class: "img-circle") %>
+          					 	<h2>  <%= p.nombre %></h2>
+          						<p>  <%= p.descripcion %></p>
+      						    <p><%= link_to "Detalles", p, method: :show, class: 'btn btn-danger btn-sm' %> </a></p>
+      						    <h2></h2> <h2></h2> <h2></h2> <h2></h2> <h2></h2> <h2></h2> <h2></h2>
+        	</div><!-- /.col-lg-4 -->
+						
+		<% end %>
+</div>
