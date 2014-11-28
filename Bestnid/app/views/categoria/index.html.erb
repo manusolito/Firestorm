@@ -138,8 +138,8 @@ table,td {
     <% @categoria.each do |categoria| %>
 	<% if categoria.disponible==true %>
       <tr>
-        <td><%= categoria.nombre %></td>
-        <td><%= link_to 'Mostrar', categoria %></td>
+        <td class="text-center"><%= categoria.nombre %></td>
+        <td class="text-center"><%= link_to 'Mostrar', categoria %></td>
       </tr>
     <%end%>
     <% end %>
