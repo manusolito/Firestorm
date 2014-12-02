@@ -129,24 +129,22 @@ td.text-right {
         <tr>
          <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
          <% if oferta.producto.vencimiento <=  DateTime.now.to_date  %>
-             <% if oferta.producto.ofertagano_id == oferta.id %>
-               <td> Finalizada </td>
+             <% if oferta.producto.ofertagano_id == nil %>
+               <td> En espera de elección del ganador...</td>
                <td>              </td>
-               <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
                <td>              </td>
+			   <td>              </td>
              <% else %>
-			        <% if oferta.producto.ofertagano_id == nil %>
-                       <td> Finalizada </td>
-                       <td>              </td>
-                       <td> En espera de ganador </td>
-					    <td>              </td>
-					    <% else %>
-               <td> Finalizada </td>
+			   <td> Finalizada </td>
                <td>              </td>
-               <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
-               <td>              </td>
+               <% if oferta.producto.ofertagano_id == oferta.id %>
+                 <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
+                 <td>              </td>
+               <% else %>
+                <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
+                <td>              </td>
+               <% end %>
              <% end %>
-			  <% end %>
          <% else %>
              <td> Activa </td>
              <td>              </td>
