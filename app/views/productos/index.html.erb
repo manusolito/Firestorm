@@ -129,7 +129,6 @@ table, td {
       <th class="text-center">Descripcion</th>
       <th class="text-center">Vencimiento</th>
 	    <th class="text-center">Categoria</th>
-      <th class="text-center"></th>
     
     </tr>
   </thead>
@@ -155,5 +154,5 @@ table, td {
 <br>
 
 <% if logged_in? and (not current_usuario.admin?)  %>
-<%= link_to 'Nuevo Producto', :action => :new %>
+<center><%= link_to 'Subastar nuevo producto', :action => :new %></center>
 <%end%>
