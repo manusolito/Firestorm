@@ -1,5 +1,8 @@
-<%= form_tag url_for(usuarios#destoy), :method => :delete do %>
-  <%= label_tag(:password, "Enter password before deleting") %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Delete User With Confirmation" %>
+<%= form_for @usuario, method: :delete do |f| %>
+
+  <%= f.label :password %><br/>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Eliminar Cuenta" %><br/>
+
 <% end %>

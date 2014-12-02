@@ -135,11 +135,18 @@ td.text-right {
                <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
                <td>              </td>
              <% else %>
+			        <% if oferta.producto.ofertagano_id == nil %>
+                       <td> Finalizada </td>
+                       <td>              </td>
+                       <td> En espera de ganador </td>
+					    <td>              </td>
+					    <% else %>
                <td> Finalizada </td>
                <td>              </td>
                <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
                <td>              </td>
              <% end %>
+			  <% end %>
          <% else %>
              <td> Activa </td>
              <td>              </td>

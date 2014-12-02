@@ -52,7 +52,7 @@ end
   end
   
   def destroy
-      usua = Usuario.find(params[:id])
+      usua = current_usuario
       bool=false
 	  usua.productos.each do |p|
 	    if (p.disponible==true) and (p.ofertagano_id == nil) then
@@ -66,8 +66,8 @@ end
 	    	   o.destroy
 	       end
          end
-    	 if usua.authenticate(params[:password])
-		   usua.password=params[:password]
+    	 if usua.authenticate((params[:usuario][:password]))
+		   usua.password=(params[:usuario][:password])
 		   usua.save
 		   log_out
            flash[:success] = "Usuario Eliminado"
