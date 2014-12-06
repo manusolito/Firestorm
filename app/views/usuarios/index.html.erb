@@ -121,14 +121,21 @@ table, td {
 }
 </style>
 </head>
-
+ <%= form_tag usuarios_path(@usuarios), :method => :get do%>
+   <p>
+  Registrado despues del:
+  <%= date_field_tag :start_date, params[:start_date]%>
+  Registrado antes del:
+  <%= date_field_tag :end_date, params[:end_date]%>
+  <%= submit_tag "Filtrar", :class => "btn btn-primary"%>
+  </p>
+ <%end%>
 
 <table class="table-fill">
   <thead>
     <tr>
 	  <th class="text-center">Foto</th>
     <th class="text-center">Nombre</th>
-    <th class="text-center"></th>
     </tr>
   </thead>
 

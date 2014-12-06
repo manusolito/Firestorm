@@ -1,9 +1,5 @@
- 
       <tr>
 	    <td class="text-center"><%= image_tag(usuario.url, size: "80") %></td>
         <td class="text-center"><%= link_to usuario.nombre, usuario %></td>
-        <% if current_usuario.admin? && !current_usuario?(usuario) %>
-             <td class="text-center"><%= link_to "Eliminar", usuario, method: :delete, data: { confirm: "Esta Seguro?" } %>
-	         <% end %></td>
       </tr>
   

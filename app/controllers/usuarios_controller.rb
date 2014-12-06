@@ -6,6 +6,16 @@ class UsuariosController < ApplicationController
 
   def index
     @usuarios = Usuario.all
+	if params[:start_date].present? and params[:end_date].present?
+	  @usuarios = @usuarios.where("usuarios.created_at >= ? and usuarios.created_at <= ?", params[:start_date], params[:end_date])
+	else
+      if params[:start_date].present?
+        @usuarios = @usuarios.where("usuarios.created_at >= ?", params[:start_date])
+      end
+      if params[:end_date].present?
+        @usuarios = @usuarios.where("usuarios.created_at <= ?", params[:end_date])
+      end
+	end
   end
 
 def show
