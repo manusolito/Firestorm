@@ -123,32 +123,30 @@ td.text-right {
        <th>       </th>
      </tr>
     
-
-     <% @oferta.each do |oferta| %>
+     <% ofertas = Oferta.all %>
+     <% ofertas.each do |oferta| %>
      <% if oferta.usuario == current_usuario %>
         <tr>
          <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
          <% if oferta.producto.vencimiento <=  DateTime.now.to_date  %>
              <% if oferta.producto.ofertagano_id == nil %>
                <td> En espera de elección del ganador...</td>
-               <td>              </td>
-               <td>              </td>
-			   <td>              </td>
-             <% else %>
-			   <td> Finalizada </td>
-               <td>              </td>
-               <% if oferta.producto.ofertagano_id == oferta.id %>
-                 <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
-                 <td>              </td>
-               <% else %>
-                <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
-                <td>              </td>
-               <% end %>
+               <td>     </td>  
+              <% else %>
+			           <td> Finalizada </td>
+                 <% if oferta.producto.ofertagano_id == oferta.id %>
+                    <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
+                 <% else %>
+                   <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
+                 <% end %>
              <% end %>
+             <td>     </td>
+             <td>     </td>
          <% else %>
              <td> Activa </td>
-             <td>              </td>
-             <td><%= link_to 'Ver detalles', oferta %></td>
+             <td>     </td>
+             <td><%= link_to 'Ver detalles', oferta ,class: 'btn btn-primary btn-sm' %></td>
+             <td> <%= link_to "Editar", edit_ofertum_path(oferta) ,class: 'btn btn-info btn-sm' %> </td>
              <td> <%= link_to "Eliminar", oferta, method: :delete,  data: {confirm: "¿Está seguro?"},class: 'btn btn-danger btn-sm' %> </td>
          <% end %>
         </tr>

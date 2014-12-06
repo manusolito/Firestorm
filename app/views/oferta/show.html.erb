@@ -1,4 +1,7 @@
 <% if @oferta.usuario == current_usuario %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-4">
+</br></br>
 <p>
   <strong>Motivo:</strong>
   <%= @oferta.motivo %>
@@ -14,6 +17,9 @@
 
 
 <%= link_to 'Atras', oferta_path %>
+
+</div>
+</div>
 
 <% else %>
 <strong>Direccion no disponible</strong>

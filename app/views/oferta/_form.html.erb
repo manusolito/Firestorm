@@ -5,11 +5,14 @@ div {
 }
 </style>
 </head>
+<div class="row">
+  <div class="col-md-6 col-md-offset-4">
+    <h1>Solicitud de oferta</h1>
 <%= form_for :oferta, url:oferta_path do |f| %>
 
  <% if @oferta.errors.any? %>
     <div id="error_explanation">
-      <h2><font color="red"> La oferta no puede ser gardada:</font></h2>
+      <h2><font color="red"> La oferta no puede ser guardada:</font></h2>
 
       <ul>
       <% @oferta.errors.full_messages.each do |message| %>
@@ -35,5 +38,9 @@ div {
   <div class="actions">
     <%= f.submit "Enviar oferta", class: "btn btn-primary" %>
   </div>
+ </br></br> 
+<%= link_to 'Atras', oferta_path %>
+</div>
+</div>
 
 <% end %>

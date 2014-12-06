@@ -1,10 +1,7 @@
 <% if not (params[:format]).nil? and(current_usuario != Producto.find(params[:format]).usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id =>Producto.find(params[:format]).id)%>
 
-<h1>Solicitud de oferta</h1>
-
 <%= render 'form' %>
 
-<%= link_to 'Atras', oferta_path %>
 
 <% else %>
 <strong>Direccion no disponible</strong>

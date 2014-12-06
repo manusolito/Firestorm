@@ -1,6 +1,7 @@
 class OfertaController < ApplicationController
   before_action :Usuario_noLogueado, only: [:create, :new, :edit, :update]
   before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
+  before_action :get_oferta, only: [:edit, :update, :destroy]
 
 #Un usuario no logueado no podra ofertar
   def Usuario_noLogueado
@@ -29,11 +30,18 @@ class OfertaController < ApplicationController
   end
 
   def edit
+    @oferta = Oferta.find(params[:id])
   end
 
   def update
+    @oferta= Oferta.find(params[:id])
+   if @oferta.update_attributes(o_params)
+    redirect_to @oferta, :notice => "Monto actualizado"
+   else
+    render :edit, :notice => "Error al actualizar el monto, intentelo nuevamente"
+   end
   end
-
+    
   def destroy
     @oferta = current_usuario.ofertas.find(params[:id])
     @oferta.destroy
@@ -59,5 +67,9 @@ class OfertaController < ApplicationController
     private
     def oferta_params           
        params.require(:oferta).permit(:motivo, :monto, :producto_id, :usuario_id)
+    end
+
+    def o_params           
+       params.require(:oferta).permit(:monto)
     end
 end

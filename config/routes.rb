@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   post '/oferta/:id', to: 'oferta#show'
 
+  post '/oferta/:id/edit', to: 'oferta#edit'
+
   post '/oferta', to: 'oferta#create' 
   
    post '/productos/:id', to: 'productos#show'
