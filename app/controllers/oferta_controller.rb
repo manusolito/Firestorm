@@ -21,13 +21,13 @@ class OfertaController < ApplicationController
    @oferta = Oferta.all
 
    if params[:start_date].present? and params[:end_date].present?
-    @oferta = @oferta.where("oferta.producto.diaventa >= ? and oferta.producto.diaventa <= ? and oferta.producto.ofertagano_id == oferta.id", params[:start_date], params[:end_date])
+    @oferta = @oferta.where("oferta.producto.diaventa >= ? and oferta.producto.diaventa <= ? and oferta.producto.ofertagano_id == ?", params[:start_date], params[:end_date], :id)
    else
       if params[:start_date].present?
-        @oferta = @oferta.where("oferta.producto.diaventa >= ? and oferta.producto.ofertagano_id == oferta.id", params[:start_date])
+        @oferta = @oferta.where("oferta.producto.diaventa >= ? and oferta.producto.ofertagano_id == ?", params[:start_date], :id)
       else
           if params[:end_date].present?
-              @oferta = @oferta.where("oferta.producto.diaventa <= ? and oferta.producto.ofertagano_id == oferta.id", params[:end_date])
+              @oferta = @oferta.where("oferta.producto.diaventa <= ? and oferta.producto.ofertagano_id == ?", params[:end_date], :id)
           end
       end
    end
