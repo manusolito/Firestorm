@@ -165,9 +165,9 @@ td.text-right {
         <%= form_tag oferta_path(@oferta), :method => :get do%>
         <p>
            Compras realizadas despues del:
-            <%= date_field_tag @start_date, params[:start_date]%>
+            <%= date_field_tag :start_date, params[:start_date]%>
            Compras realizadas antes del:
-            <%= date_field_tag @end_date, params[:end_date]%>
+            <%= date_field_tag :end_date, params[:end_date]%>
           <%= submit_tag "Filtrar", :class => "btn btn-primary"%>
         </p>
       <%end%>
