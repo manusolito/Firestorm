@@ -5,6 +5,7 @@ class CreateProductos < ActiveRecord::Migration
       t.string :prourl
       t.text :descripcion
       t.date :vencimiento
+      t.date :diaventa
       t.references :usuario, index: true
 	  
 	  t.timestamps

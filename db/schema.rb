@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20141124162650) do
     t.string   "prourl"
     t.text     "descripcion"
     t.date     "vencimiento"
+    t.date     "diaventa"
     t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"

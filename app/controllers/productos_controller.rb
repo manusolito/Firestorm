@@ -59,6 +59,6 @@ class ProductosController < ApplicationController
   end
   private
     def producto_params
-      params.require(:productos).permit(:nombre, :descripcion, :vencimiento, :prourl, :categoria_id, :ofertagano_id )
+      params.require(:productos).permit(:nombre, :descripcion, :vencimiento, :prourl, :categoria_id, :ofertagano_id , :diaventa)
     end
 end

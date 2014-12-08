@@ -19,6 +19,18 @@ class OfertaController < ApplicationController
 
   def index
    @oferta = Oferta.all
+
+   if params[:start_date].present? and params[:end_date].present?
+    @oferta = @oferta.where("oferta.producto.diaventa >= ? and oferta.producto.diaventa <= ? ", params[:start_date], params[:end_date])
+   else
+      if params[:start_date].present?
+        @oferta = @oferta.where("oferta.producto.diaventa >= ? ", params[:start_date])
+      else
+          if params[:end_date].present?
+              @oferta = @oferta.where("oferta.producto.diaventa <= ? ", params[:end_date])
+          end
+      end
+   end
   end
 
   def show
