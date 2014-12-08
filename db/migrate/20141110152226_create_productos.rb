@@ -7,6 +7,7 @@ class CreateProductos < ActiveRecord::Migration
       t.date :vencimiento
       t.date :diaventa
       t.references :usuario, index: true
+	  t.references :categoria, index: true
 	  
 	  t.timestamps
     end

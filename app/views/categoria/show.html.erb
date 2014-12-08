@@ -157,7 +157,8 @@ table,td {
 
 
 <% if logged_in? and current_usuario.admin? %>
-<%= link_to "Eliminar categoria", categorium_path(@categoria.id), :method => :delete , data: { confirm: "Esta seguro de eliminar la categoria?" }%><br>
+<%= link_to "Editar", edit_categorium_path(:id => @categoria.id)%><br>
+<%= link_to "Eliminar", categorium_path(@categoria.id), :method => :delete , data: { confirm: "Esta seguro de eliminar la categoria?" }%><br>
 <%end%>
 
 <%= link_to 'Atras', categoria_path %>

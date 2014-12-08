@@ -12,11 +12,15 @@ class CategoriaController < ApplicationController
   end
     
   def new
-    @categoria=Categoria.new
+    @categoria = Categoria.new
+  end
+
+  def edit
+    @categoria = Categoria.find(params[:id])
   end
   
   def create
-    @categoria = Categoria.new(categorium_params)
+    @categoria = Categoria.new(categori_params)
     @asd=@categoria.nombre
 	if Categoria.where(:nombre => @asd).present? and not Categoria.where(:nombre => @asd).first.disponible
 	  @categoria = Categoria.find(Categoria.where(:nombre => @asd).first.id)
@@ -31,6 +35,16 @@ class CategoriaController < ApplicationController
         format.html { render :new }
         format.json { render json: @categoria.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def update
+    @categoria = Categoria.find(params[:id])
+    if @categoria.update_attributes(categori_params)
+	  flash[:success] = "Categoria Actualizada"
+      redirect_to @categoria
+    else
+      render 'edit'
     end
   end
   
@@ -60,7 +74,7 @@ class CategoriaController < ApplicationController
   end
   
 	private
-	def categorium_params
+	def categori_params
       params.require(:categoria).permit(:nombre)
     end
 	

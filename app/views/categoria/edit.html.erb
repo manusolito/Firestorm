@@ -1,6 +1,60 @@
-<h1>Editing categorium</h1>
+<style>
 
-<%= render 'form' %>
+.error{
+	position: absolute;
+    left: 10px;
+	font-size: 100%;
+    border: 5px solid #a1a1a1;
+    padding: 5px 80px; 
+    background: #FF3030;
+    width: 450px;
+    border-radius: 15px;
 
-<%= link_to 'Show', @categorium %> |
-<%= link_to 'Back', categoria_path %>
+}
+   
+p.oblique {
+    font-style: oblique;
+}
+
+.ventanaBorder {
+	font-size: 85%;
+    margin-left:auto;
+    margin-right:auto;
+    border: 10px solid #a1a1a1;
+    padding: 0px 50px; 
+    background: #B8B8B8;
+    width: 330px;
+    border-radius: 15px;
+}
+</style>
+
+<div class="ventanaBorder"> 
+<h1>Editar Categoria</h1>
+
+<%= form_for @categoria do |f| %>
+ <% if @categoria.errors.any? %>
+    <div id="error_explanation">
+      <h2><font color="red"> La categoria no puede ser gardada:</font></h2>
+
+      <ul>
+      <% @categoria.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :required => "required"%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar Categoria", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+<p>
+  <%= link_to "Atras", @categoria %>
+</p>
+</div>

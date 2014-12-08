@@ -43,13 +43,14 @@ ActiveRecord::Schema.define(version: 20141124162650) do
     t.date     "vencimiento"
     t.date     "diaventa"
     t.integer  "usuario_id"
+    t.integer  "categoria_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "categoria_id"
     t.boolean  "disponible",    default: true
     t.integer  "ofertagano_id"
   end
 
+  add_index "productos", ["categoria_id"], name: "index_productos_on_categoria_id", using: :btree
   add_index "productos", ["usuario_id"], name: "index_productos_on_usuario_id", using: :btree
 
   create_table "usuarios", force: true do |t|
