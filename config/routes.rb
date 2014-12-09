@@ -24,8 +24,6 @@ Rails.application.routes.draw do
   post '/oferta', to: 'oferta#create' 
   
    post '/productos/:id', to: 'productos#show'
-
-   get '/oferta/estadistica', to: 'oferta#estadistica'
    
   #post '/usuarios' =>'usuarios#confirmation', :as => :confirmation
 
