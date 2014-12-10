@@ -1,0 +1,11 @@
+
+   
+   		<% if producto.ofertagano_id != nil%>
+   			<% @ofertas = Oferta.all%>
+   			<%oferta = @ofertas.find(producto.ofertagano_id)%>
+			<% @usuario = Usuario.find(oferta.usuario.id) %>
+			<% @usuario.nrocompras = @usuario.nrocompras+1 %>
+		
+       
+      	<%end%>
+   

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   post '/oferta', to: 'oferta#create' 
   
    post '/productos/:id', to: 'productos#show'
+
+   get '/productos/estadistica', to: 'productos#estadistica'
    
   #post '/usuarios' =>'usuarios#confirmation', :as => :confirmation
   #get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

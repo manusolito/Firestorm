@@ -22,6 +22,22 @@ class ProductosController < ApplicationController
     @productos = Producto.all
   end
 
+  def estadistica
+     @productos = Producto.all
+
+   if params[:start_date].present? and params[:end_date].present?
+    @productos = @productos.where("productos.diaventa >= ? and productos.diaventa <= ?", params[:start_date],params[:end_date])
+   else
+      if params[:start_date].present?
+        @productos = @productos.where("productos.diaventa >= ?", params[:start_date])
+      end
+      if params[:end_date].present?
+          @productos = @productos.where("productos.diaventa <= ?", params[:end_date])
+      end
+  
+   end
+  end
+
   def show
    @producto=Producto.find(params[:id])
   end

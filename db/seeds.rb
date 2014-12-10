@@ -47,6 +47,17 @@ Oferta.create!(motivo: "Super tiernis",
                monto: "100",
 			   usuario: Usuario.find_by(nombre: "Le man"),
 			   producto: Producto.find_by(nombre: "Perro"))
+Producto.create!(nombre: "Perro dos",
+               descripcion: "Ladra mas que el otro",
+			   categoria: "Mascotas",
+			   prourl: "http://www.fondosescritorio.net/wallpapers/Naturaleza/Animales/Perro-Cahorro.jpg",
+			   usuario: Usuario.find_by(dni: "12345678"),
+			   categoria: Categoria.find_by(nombre: "Mascotas"),
+			   vencimiento: d)
+Oferta.create!(motivo: "Ni idea",
+               monto: "12",
+			   usuario: Usuario.find_by(nombre: "El pillo"),
+			   producto: Producto.find_by(nombre: "Perro dos"))
 Producto.create!(nombre: "Gato",
                descripcion: "Es Mudo",
 			   categoria: "Mascotas",
@@ -64,6 +75,12 @@ Oferta.create!(motivo: "Es blanco como mis canas",
 			   producto: Producto.find_by(nombre: "Gato"))
 o=Producto.find_by(nombre: "Gato")
 o.ofertagano_id=Oferta.find_by(motivo: "Es blanco como mis canas").id
+o.diaventa = Date.new(2014,12,8)
+o=Producto.find_by(nombre: "Perro")
+o.ofertagano_id=Oferta.find_by(motivo: "Super tiernis").id
+o.diaventa = Date.new(2014,12,8)
+o=Producto.find_by(nombre: "Perro dos")
+o.ofertagano_id=Oferta.find_by(motivo: "Ni idea").id
 o.diaventa = Date.new(2014,12,8)
 o.save
 			   

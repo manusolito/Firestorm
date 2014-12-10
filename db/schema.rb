@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124162650) do
+ActiveRecord::Schema.define(version: 20141210204024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20141124162650) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",                     default: false
+    t.integer  "nrocompras",                default: 0
   end
 
   add_index "usuarios", ["dni"], name: "index_usuarios_on_dni", unique: true, using: :btree

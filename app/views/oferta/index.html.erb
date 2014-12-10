@@ -156,37 +156,5 @@ td.text-right {
 
 <% end %>
 
-<% else %>
-  <% if  Oferta.all.size == 0 %>
-    </br> </br>
-    <div class="alert alert-info" role="alert">¡Aún no se realizo ninguna oferta en Bestnid!</div>
- <% else %>
-    </head>
-        <%= form_tag oferta_path(@oferta), :method => :get do%>
-        <p>
-           Compras realizadas despues del:
-            <%= date_field_tag :start_date, params[:start_date]%>
-           Compras realizadas antes del:
-            <%= date_field_tag :end_date, params[:end_date]%>
-          <%= submit_tag "Filtrar", :class => "btn btn-primary"%>
-        </p>
-      <%end%>
-    
-<table class="table-fill"> <thead>
-    <tr>
-    <th class="text-center">Foto</th>
-    <th class="text-center">Nombre</th>
-    </tr>
-  </thead>
 
-
-  <tbody class="table-hover">
-<ul class="oferta">
-  <%= render @oferta %>
-</ul>
-</tbody>
-</table>
-
-
-  <% end %>
 <% end %>

@@ -1,0 +1,106 @@
+<style>
+/*** Estilo de la tabla **/
+
+td {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #000000;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+
+</style>
+
+<% if logged_in? and (not current_usuario.admin) %>
+    </br> </br>
+    <div class="alert alert-info" role="alert">No cuenta con los permisos para acceder a las estadisticas</div>
+<% else %>
+    
+  <% if flash[:success] %>
+    <h4><font color="blue"><div class="success"><%= flash[:success] %></div></font></h4>
+  <% end %>
+
+<head>
+<style>
+table, td {
+    padding: 5px;
+}
+</style>
+</head>
+ <%= form_tag productos_estadistica_path(@productos), :method => :get do%>
+   <p>
+  Compras realizadas despues del:
+  <%= date_field_tag :start_date, params[:start_date]%>
+  Compras realizadas antes del:
+  <%= date_field_tag :end_date, params[:end_date]%>
+  <%= submit_tag "Filtrar", :class => "btn btn-primary"%>
+  </p>
+ <%end%>
+
+
+
+
+
+       <%= render @productos %>
+      <%@max = Usuario.maximum(:nrocompras) %>
+        <% @usu = Usuario.find_by!(nrocompras: @max)%>
+
+ <div class="row">
+  <div class="col-md-6 col-md-offset-4">
+    </br></br>
+    <h3>Usuario con más compras</h3>
+    </br></br>
+    <p>
+      <strong>Foto:   </strong>
+             <%= image_tag(@usu.url, size: "80") %>
+    </p>
+
+    </br>
+
+    <p>
+      <strong>Nombre:   </strong>
+             <%= link_to @usu.nombre, @usuario%>
+    </p>
+
+    </br>
+
+    <p>
+      <strong>Cantidad de compras:   </strong>
+             <%= @max %>
+    </p>
+
+  </div>
+  </div>  
+<% end %>
+
