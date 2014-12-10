@@ -20,13 +20,15 @@ Rails.application.routes.draw do
   post '/oferta/:id', to: 'oferta#show'
 
   post '/oferta/:id/edit', to: 'oferta#edit'
-
+  
   post '/oferta', to: 'oferta#create' 
   
    post '/productos/:id', to: 'productos#show'
    
   #post '/usuarios' =>'usuarios#confirmation', :as => :confirmation
-
+  #get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  post 'productos/:id/ganador' => 'productos#ganador', id: :ofertagano_id
+  #get 'productos/:id/ganador' => 'productos#ganador', id: :ofertagano_id
   
 
   resources :categoria

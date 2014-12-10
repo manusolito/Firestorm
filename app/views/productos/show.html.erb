@@ -165,6 +165,7 @@ td.text-right {
    <tr>
    <th>motivo</th>
    <th>monto</th>
+   <th>oferta ganadora</th>
    <th>elegir</th>
   
    </tr>
@@ -172,11 +173,14 @@ td.text-right {
     <tr>
     <% if e.producto_id==@producto.id %>
     <td><%=e.motivo%></td>
-    <td><%=e.monto%><td>
-     <td>#falta el link to a el metodo ganador<td>
+    <td><%=e.monto%></td>
+    <td><%=@producto.ofertagano_id%></td>
+
+    <td><%= link_to "elegir ganador", controller: "productos", method: "ganador", ofertagano_id: e.id %><td>
 
 
      </p>
   <% end %>
   <% end %>
 </table>
+

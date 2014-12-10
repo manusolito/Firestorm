@@ -52,7 +52,14 @@ class ProductosController < ApplicationController
            redirect_to producto_url
     end
   def ganador
-    @producto.ofertagano_id = params[:ofertagano_id]
+   if params[:ofertagano_id]
+    a=params[:ofertagano_id]
+     else
+      a=8
+    end
+    b=15
+    @producto=Producto.find(params[:id])
+    @producto.ofertagano_id = a #puse este valor para probar si asignaba algo, pero no asigna nada.
     @producto.save
     flash[:success] = "Ganador elegido"
 
