@@ -29,7 +29,7 @@
 	<% if logged_in? %>
 	<%= t.number_field :dni, :disabled=>true, :required => "required" %>
 	<% else %>
-    <%= t.number_field :dni, :required => "required", :placeholder => "6 a 8 digitos" %>
+    <%= t.number_field :dni, :required => "required", min: 0, :placeholder => "6 a 8 digitos" %>
 	<% end %>
 	</div>
 
@@ -40,7 +40,7 @@
 
 	<div class="field">
     <%= t.label :tarjeta, "* Tarjeta" %>
-    <%= t.number_field :tarjeta, :required => "required", :size => "1",:placeholder => "16 numeros"%>
+    <%= t.number_field :tarjeta, :required => "required", :size => "1", min: 0,:placeholder => "16 numeros"%>
 	</div>
   
     <div class="field">

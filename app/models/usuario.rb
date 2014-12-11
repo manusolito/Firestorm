@@ -2,16 +2,14 @@ class Usuario < ActiveRecord::Base
     attr_accessor :remember_token
     before_save { self.email = email.downcase }
     validates :dni, presence: true, length: 
-    { in: 6..8 , message: "debe tener entre 6 y 8 numeros"},
-     uniqueness: {case_sensitive: false ,message:"ya registrado. 
-      Por favor ingrese un DNI no registrado."}
+    { in: 6..8 , message: "debe tener entre 6 y 8 numeros"}
+	validates_uniqueness_of :dni, :case_sensitive => false, message:"ya registrado. Por favor ingrese un DNI no registrado."
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i		
-    validates :email, presence: true, uniqueness: {case_sensitive: false ,message: 
-    	"ya registrado. Por favor ingrese un correo no registrado."}, format: {with: VALID_EMAIL_REGEX, message: "formato invalido"}
+    validates :email, presence: true, format: {with: VALID_EMAIL_REGEX, message: "formato invalido"}
+	validates_uniqueness_of :email, :case_sensitive => false, conditions: -> { where.not(disponible: 'false') },message: "ya registrado. Por favor ingrese un correo no registrado."
     validates :tarjeta, presence: true, length:{is: 16, :message =>
-    	"con formato invalido. Debe contener 16 digitos."}, uniqueness: 
-    	{case_sensitive: false ,message: 
-    	"ya registrada. Por favor ingrese una tarjeta no registrada."}
+    	"con formato invalido. Debe contener 16 digitos."}
+	validates_uniqueness_of :tarjeta, :case_sensitive => false, conditions: -> { where.not(disponible: 'false') }, message: "ya registrada. Por favor ingrese una tarjeta no registrada."
 
 	 validate :tarjetaMenorAcero
    def tarjetaMenorAcero

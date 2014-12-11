@@ -88,15 +88,6 @@ end
 	     flash[:danger] = "El Usuario No Puede Ser Eliminado. Tiene Subastas Pendientes"
 	  end
 	  redirect_to root_url
-  
-  
-  
-  
-  
-  
-    #Usuario.find(params[:id]).destroy
-    #flash[:success] = "Usuario Eliminado"
-    #redirect_to usuarios_url
   end
   
   private
