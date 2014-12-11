@@ -1,2 +1,55 @@
-<h1>Ayuda</h1>
-<%= image_tag("construccion.jpg") %>
+<h1><center>Preguntas frecuentas</center></h1>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		*{ font-family: sans-serif; margin: 0;}
+		dl{ margin: 60px auto; width: 650px; }
+		dt, dd{ padding: 20px; }
+		dt{ background: #333333; color: white; border-bottom: 1px solid #141414; border-top: 1px solid #4E4E4E; cursor: pointer; }
+		dd{ background: #F5F5F5; line-height: 1.6em; }
+		dt.activo, dt:hover{ background: #424242; }
+
+		dt:before{ content: "▸"; margin-right: 5px; }
+		dt.activo:before{ content: "▾"; }
+	</style>
+</head>
+<body>
+	<dl>
+		<dt>¿Qué requisitos debo cumplir para registrarme?</dt>
+		<dd>Debes contar una tarjeta de crédito bancaria.</dd>
+
+		<dt>¿Debo registrarme para ver los productos publicados?</dt>
+		<dd>No, los productos publicados pueden verse aún sin tener una cuenta en nuestro sitio.</dd>
+
+		<dt>¿Debo registrarme e iniciar sesión para poder utilizar las funcionalidades del sitio?</dt>
+		<dd>Exacto. Usted deberá iniciar sesión para poder ofertar y subastar productos, elegir oferta ganadora, etcétera.</dd>
+
+		<dt>¿Cómo se realiza el pago del producto adjudicado?</dt>
+		<dd>Al momento de haber sido elegido como ganador de la subasta, se le mostrará el email del subastador para que se contacte con éste y decidan la forma de pago conveniente entre las partes.</dd>
+
+		<dt>¿Qué porcentaje del monto ofertado se debita a Bestnid?</dt>
+		<dd>Una vez elegido un ganador, el 30% del total se debitará al administrador del sitio. El resto se adjudica a quién subastó el producto.</dd>
+
+		<dt>Vencimiento del producto subastado</dt>
+		<dd>Usted podrá selecccionar un plazo de entre 15 a 30 días posteriores a la fecha de la subasta para el vencimiento del producto que oferte. Luego de ésta fecha, no recibirá mas ofertas por dicho producto y deberá elegir un ganador.
+		</dd>
+
+	</dl>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+	  $('dl dd').not('dt.activo + dd').hide();
+       $('dl dt').click(function(){
+          if ($(this).hasClass('activo')) {
+               $(this).removeClass('activo');
+               $(this).next().slideUp();
+          } else {
+               $('dl dt').removeClass('activo');
+               $(this).addClass('activo');
+               $('dl dd').slideUp();
+               $(this).next().slideDown();
+          }
+       });
+	</script>
+</body>
