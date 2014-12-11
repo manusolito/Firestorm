@@ -24,9 +24,14 @@ ActiveRecord::Schema.define(version: 20141211154746) do
   end
 
   create_table "contactos", force: true do |t|
+    t.text     "asunto"
+    t.text     "mensaje"
+    t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "contactos", ["usuario_id"], name: "index_contactos_on_usuario_id", using: :btree
 
   create_table "oferta", force: true do |t|
     t.text     "motivo"

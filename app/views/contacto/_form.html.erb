@@ -1,0 +1,45 @@
+<head>
+<style>
+div {
+    padding: 5px;
+}
+</style>
+</head>
+<div class="row">
+  <div class="col-md-6 col-md-offset-4">
+    <h2>Formulario de contacto</h2>
+<%= form_for :contacto, url:contacto_path do |f| %>
+
+ <% if @contacto.errors.any? %>
+    <div id="error_explanation">
+      <h2><font color="red"> El mensaje no puede ser enviado:</font></h2>
+
+      <ul>
+      <% @contacto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :asunto, " *Motivo" %><br>
+    <%= f.text_area :asunto, required: true, placeholder: 'Ingrese el asunto'%>
+  </div>
+  </br>
+  <div class="field">
+    <%= f.label :mensaje, " *Monto" %><br>
+    <%= f.number_field :mensaje, required: true, placeholder: 'Ingrese el mensaje'%>
+  </div>
+  
+</br>
+
+  <div class="actions">
+    <%= f.submit "Enviar mensaje", class: "btn btn-primary" %>
+  </div>
+ </br></br> 
+<%= link_to 'Atras', welcome_index_path %>
+</div>
+</div>
+
+<% end %>
