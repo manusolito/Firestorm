@@ -113,27 +113,26 @@ td.text-right {
 
 
 <table class="table-fill">
-<thead>
- <tr>
+  <thead>
+   <tr>
       <th class="text-center">Imagen</th>
       <th class="text-center">Nombre</th>
       <th class="text-center">Descripcion</th>
       <th class="text-center">Vencimiento</th>
       <th class="text-center">Categoria</th>
     
-  </tr>
-</thead>
+   </tr>
+  </thead>
+  
+  <tbody class="table-hover">
+    <% if @producto.disponible==true %>
 
-<tbody class="table-hover">
-<% if @producto.disponible==true %>
-<p id="notice"><%= notice %></p>
-
-<td class="text-center"><%= image_tag(@producto.prourl, size: "100")%></td>
-<td class="text-center"><%= @producto.nombre %></td>
-<td class="text-center"><%= @producto.descripcion %></td>
-<td class="text-center"><%= @producto.vencimiento %></td>
-<td class="text-center"><%= link_to @producto.categoria.nombre, controller: "categoria", action: "show", id: @producto.categoria.id %></td>
-</tbody>
+      <td class="text-center"><%= image_tag(@producto.prourl, size: "100")%></td>
+      <td class="text-center"><%= @producto.nombre %></td>
+     <td class="text-center"><%= @producto.descripcion %></td>
+     <td class="text-center"><%= @producto.vencimiento %></td>
+     <td class="text-center"><%= link_to @producto.categoria.nombre, controller: "categoria", action: "show", id: @producto.categoria.id %></td>
+  </tbody>
 </table>
 
 <p>
@@ -141,46 +140,44 @@ td.text-right {
   <%= link_to "Ofertar", new_ofertum_path(@producto.id) %>
   <% end %>
 </p>
-<% if logged_in? and (current_usuario.admin)%>
-     <% if @producto.ofertas.size !=0%>
-    <h3>el producto tiene ofertas</h3>
-    <% end %>
-<%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Esta seguro de eliminar el producto?" }%><br>
-<% end %>
-</p>
 
-<%= link_to 'Atras', productos_path %>
+<% if logged_in? and (current_usuario.admin)%>
+     <% if @producto.ofertas.size != 0%>
+        <h3>el producto tiene ofertas</h3>
+     <% end %>
+    <%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Esta seguro de eliminar el producto?" }%><br>
+<% end %>
+ 
+  </br><br>
+
+<% if logged_in? and (not current_usuario.admin) and (current_usuario == @producto.usuario) and (@producto.vencimiento <=  DateTime.now.to_date ) %>
+   <h3>Elegir ganador</h3>
+   </br><br>
+
+   <table style="width:100%">
+    <tr>
+      <th>Motivo</th>
+      <th>Monto</th>
+      <th>Elegir ganador</th>
+   </tr>
+  
+    <%@producto.ofertas.each do |e|%>
+       <tr>
+        <td><%=e.motivo%></td>
+        <td><%=e.monto%></td>
+        <td><%= link_to "Elegir", {"controller" => "productos", "action" => "ganador", "ofertagano_id" => e.id } %><td>    
+      </tr>
+    <%end%>
+  </table>
+
+</br><br>
+  <%= link_to 'Atras', productos_path %>
+
+<%end%>
 
 <% else %>
 <strong>Direccion no disponible</strong>
 <% end %>
-
-
-
-<% "if @producto.vencimiento<DateTime.now.to_date"   %>
-  <h1>elegir ganador</h1>
  
 
-  <table style="width:100%">
-   <tr>
-   <th>motivo</th>
-   <th>monto</th>
-   <th>oferta ganadora</th>
-   <th>elegir</th>
-  
-   </tr>
-   <%@producto.ofertas.each do |e|%>
-    <tr>
-    <% if e.producto_id==@producto.id %>
-    <td><%=e.motivo%></td>
-    <td><%=e.monto%></td>
-    <td><%=@producto.ofertagano_id%></td>
-
-    <td><%= link_to "elegir ganador", controller: "productos", method: "ganador", ofertagano_id: e.id %><td>
-
-
-     </p>
-  <% end %>
-  <% end %>
-</table>
 

@@ -29,8 +29,10 @@ Rails.application.routes.draw do
    
   #post '/usuarios' =>'usuarios#confirmation', :as => :confirmation
   #get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-  post 'productos/:id/ganador' => 'productos#ganador', id: :ofertagano_id
   #get 'productos/:id/ganador' => 'productos#ganador', id: :ofertagano_id
+   get 'productos/:id/ganador', to: 'productos#ganador'
+  
+   post 'productos/:id/ganador', to: 'productos#ganador'
   
 
   resources :categoria

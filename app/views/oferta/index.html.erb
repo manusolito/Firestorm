@@ -109,52 +109,59 @@ td.text-right {
 </style>
 <% if logged_in? and (not current_usuario.admin) %>
     <% if  current_usuario.ofertas.all.size == 0 %>
-       </br> </br>
-      <div class="alert alert-info" role="alert">¡Aún no realizaste ninguna oferta en Bestnid!</div>
-    <% else %>
+    </br> </br>
+    <div class="alert alert-info" role="alert">¡Aún no realizaste ninguna oferta en Bestnid!</div>
+<% else %>
     
-      <h1>Mis ofertas</h1>  
-      <table style="width:100%">
+  <h1>Mis ofertas</h1>
+  <table style="width:100%">
+     <tr>
+      <th>Producto</th>
+       <th> Estado </th>
+       <th>       </th>
+       <th>       </th>
+       <th>       </th>
+       <th>       </th>
+     </tr>
+    
+
+     <% @oferta.each do |oferta| %>
+     <% if oferta.usuario == current_usuario %>
         <tr>
-           <th>Producto</th>
-           <th> Estado </th>
-           <th>       </th>
-           <th>       </th>
-           <th>       </th>
-        </tr>
-    
-        <% ofertas = Oferta.all %>
-        <% ofertas.each do |oferta| %>
-        <% if oferta.usuario == current_usuario %>
-         <tr>
-            <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
-           <% if oferta.producto.vencimiento <=  DateTime.now.to_date  %>
+         <td><%= link_to oferta.producto.nombre, controller: "productos", action: "show", id: oferta.producto_id %></td>
+         <% if oferta.producto.vencimiento <=  DateTime.now.to_date  %>
              <% if oferta.producto.ofertagano_id == nil %>
                <td> En espera de elección del ganador...</td>
-               <td>     </td>  
-              <% else %>
-			           <td> Finalizada </td>
-                 <% if oferta.producto.ofertagano_id == oferta.id %>
-                     <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
-                 <% else %>
-                     <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
-                 <% end %>
+               <td>              </td>
+               <td>              </td>
+               <td>              </td>
+             <% else %>
+               <% if oferta.producto.ofertagano_id == oferta.id %>
+                <td> Finalizada </td>
+                 <td>              </td>
+                 <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
+                 <td>              </td>
+               <% else %>
+                 <td> Finalizada </td>
+                <td>              </td>
+                <td>  Lo sentimos, no resultó ganador de la subasta. ¡La próxima vez tendrá más suerte, consulte por otros productos de Bestnid! </td>
+                <td>              </td>
+               <% end %>
              <% end %>
-             <td>     </td>
-             <td>     </td>
-           <% else %>
+         <% else %>
              <td> Activa </td>
-             <td>     </td>
-             <td><%= link_to 'Ver detalles', oferta ,class: 'btn btn-primary btn-sm' %></td>
-             <td> <%= link_to "Editar", edit_ofertum_path(oferta) ,class: 'btn btn-info btn-sm' %> </td>
+             <td>              </td>
+             <td><%= link_to 'Ver detalles', oferta %></td>
+             <td> <%= link_to "Editar", edit_ofertum_path(oferta.id), method: :edit, class: 'btn btn-info btn-sm' %> </td>
              <td> <%= link_to "Eliminar", oferta, method: :delete,  data: {confirm: "¿Está seguro?"},class: 'btn btn-danger btn-sm' %> </td>
-          <% end %>
-         </tr>
-        <% end %>
+         <% end %>
+        </tr>
+      <% end %>
       <%end%>
   </table>
 
 <% end %>
+
 
 
 <% end %>

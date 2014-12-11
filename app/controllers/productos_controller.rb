@@ -1,5 +1,5 @@
 class ProductosController < ApplicationController
-  before_action :get_producto, only: [:show,:destroy, :update]
+  before_action :get_producto, only: [:show,:destroy, :update, :ganador]
   before_action :Usuario_noLogueado, only: [:create, :new]
   before_action :Usuario_noAdmin, only: [:create, :new, :edit, :update]
 
@@ -78,19 +78,19 @@ class ProductosController < ApplicationController
            flash[:success] = "Producto Eliminado"
            redirect_to producto_url
     end
+  
   def ganador
-   if params[:ofertagano_id]
-    a=params[:ofertagano_id]
+     @ide =  params[:ofertagano_id]
+     @producto.ofertagano_id = @ide
+     @producto.diaventa = DateTime.now
+     @producto.save
+     if @producto.save
+         redirect_to welcome_index_path, :notice => "Ganador elegido" 
      else
-      a=8
-    end
-    b=15
-    @producto=Producto.find(params[:id])
-    @producto.ofertagano_id = a #puse este valor para probar si asignaba algo, pero no asigna nada.
-    @producto.save
-    flash[:success] = "Ganador elegido"
-
+        redirect_to productos_path, :notice => "Error al elegir el ganador. Intentelo nuevamente"
+     end
   end
+  
   private
     def producto_params
       params.require(:productos).permit(:nombre, :descripcion, :vencimiento, :prourl, :categoria_id, :ofertagano_id , :diaventa)
