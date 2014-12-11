@@ -151,6 +151,7 @@ td.text-right {
   </br><br>
 
 <% if logged_in? and (not current_usuario.admin) and (current_usuario == @producto.usuario) and (@producto.vencimiento <=  DateTime.now.to_date ) %>
+<% if @producto.ofertagano_id == nil %>
    <h3>Elegir ganador</h3>
    </br><br>
 
@@ -169,11 +170,15 @@ td.text-right {
       </tr>
     <%end%>
   </table>
+<%else%>
+<h4>Eligio a <%= Oferta.find_by(id: @producto.ofertagano_id).usuario.nombre%> como ganador. Contactelo a <%= Oferta.find_by(id: @producto.ofertagano_id).usuario.email%></h4>
+<%end%>
+<%end%>
 
 </br><br>
   <%= link_to 'Atras', productos_path %>
 
-<%end%>
+
 
 <% else %>
 <strong>Direccion no disponible</strong>
