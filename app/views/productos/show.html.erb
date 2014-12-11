@@ -136,7 +136,7 @@ td.text-right {
 </table>
 
 <p>
-  <% if logged_in? and (not current_usuario.admin) and (current_usuario != @producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => @producto.id)%>
+  <% if @producto.vencimiento>DateTime.now.to_date and logged_in? and (not current_usuario.admin) and (current_usuario != @producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => @producto.id)%>
   <%= link_to "Ofertar", new_ofertum_path(@producto.id) %>
   <% end %>
 </p>
