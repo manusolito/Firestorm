@@ -60,44 +60,36 @@ table, td {
 </head>
  <%= form_tag productos_estadistica_path(@productos), :method => :get do%>
    <p>
-  Compras realizadas despues del:
+  Vemtas realizadas despues del:
   <%= date_field_tag :start_date, params[:start_date]%>
-  Compras realizadas antes del:
+  Ventas realizadas antes del:
   <%= date_field_tag :end_date, params[:end_date]%>
   <%= submit_tag "Filtrar", :class => "btn btn-primary"%>
   </p>
  <%end%>
 
-
-
-
-
-       <%= render @productos %>
-      <%@max = Usuario.maximum(:nrocompras) %>
-        <% @usu = Usuario.find_by!(nrocompras: @max)%>
-
  <div class="row">
   <div class="col-md-6 col-md-offset-4">
     </br></br>
-    <h3>Usuario con más compras</h3>
+    <h3>Usuario con más ventas</h3>
     </br></br>
     <p>
       <strong>Foto:   </strong>
-             <%= image_tag(@usu.url, size: "80") %>
+             <%= image_tag(@usua.url, size: "80") %>
     </p>
 
     </br>
 
     <p>
       <strong>Nombre:   </strong>
-             <%= link_to @usu.nombre, @usuario%>
+             <%= link_to @usua.nombre, @usuario%>
     </p>
 
     </br>
 
     <p>
-      <strong>Cantidad de compras:   </strong>
-             <%= @max %>
+      <strong>Cantidad de ventas:   </strong>
+             <%= @n %>
     </p>
 
   </div>

@@ -82,5 +82,33 @@ o=Producto.find_by(nombre: "Perro dos")
 o.ofertagano_id=Oferta.find_by(motivo: "Ni idea").id
 o.diaventa = Date.new(2014,12,8)
 o.save
+
+Usuario.create!(nombre: "El Mostro",
+                email: "email@email.com",
+				tarjeta: "1244567890719267",
+				password: 			   "probando123",
+				password_confirmation: "probando123",
+				dni: "7654321",
+				url: "http://images6.fanpop.com/image/photos/36000000/Monsters-university-Halloween-monsters-inc-36001120-960-960.jpg",
+				admin: false)
+
+Producto.create!(nombre: "Bichin",
+               descripcion: "No muerde...mucho",
+			   categoria: "Mascotas",
+			   prourl: "http://www.fotonat.org/data/media/3/2009-11---Campo-Ramon-Chacra-Mariposa---Bicho1---13x18x300_filtered.jpg",
+			   usuario: Usuario.find_by(dni: "7654321"),
+			   categoria: Categoria.find_by(nombre: "Mascotas"),
+			   vencimiento: d)
+Oferta.create!(motivo: "Me caben los chobis",
+               monto: "5",
+			   usuario: Usuario.find_by(nombre: "Le man"),
+			   producto: Producto.find_by(nombre: "Bichin"))
+			   
+o=Producto.find_by(nombre: "Bichin")
+o.ofertagano_id=Oferta.find_by(motivo: "Me caben los chobis").id
+o.diaventa = Date.new(2014,11,17)
+o.save
+			   
+
 			   
 			   

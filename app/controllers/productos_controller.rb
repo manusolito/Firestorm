@@ -34,19 +34,26 @@ class ProductosController < ApplicationController
   end
 
   def estadistica
-     @productos = Producto.all
+   productos = Producto.all
+   productos = productos.where.not(ofertagano_id: nil)
 
    if params[:start_date].present? and params[:end_date].present?
-    @productos = @productos.where("productos.diaventa >= ? and productos.diaventa <= ?", params[:start_date],params[:end_date])
+    productos = productos.where("productos.diaventa >= ? and productos.diaventa <= ?", params[:start_date],params[:end_date])
    else
       if params[:start_date].present?
-        @productos = @productos.where("productos.diaventa >= ?", params[:start_date])
+        productos = productos.where("productos.diaventa >= ?", params[:start_date])
       end
       if params[:end_date].present?
-          @productos = @productos.where("productos.diaventa <= ?", params[:end_date])
+        productos = productos.where("productos.diaventa <= ?", params[:end_date])
       end
-  
    end
+   @n = -1
+   Usuario.all.each do |u|
+   if (@n < productos.where("productos.usuario_id = ?", u.id).count)
+     @n = productos.where("productos.usuario_id = ?", u.id).count
+	 @usua = u
+    end
+	end
   end
 
   def show
