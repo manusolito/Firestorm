@@ -76,9 +76,8 @@ Oferta.create!(motivo: "Es blanco como mis canas",
 o=Producto.find_by(nombre: "Gato")
 o.ofertagano_id=Oferta.find_by(motivo: "Es blanco como mis canas").id
 o.diaventa = Date.new(2014,12,8)
-o=Producto.find_by(nombre: "Perro")
-o.ofertagano_id=Oferta.find_by(motivo: "Super tiernis").id
-o.diaventa = Date.new(2014,12,8)
+o.save
+
 o=Producto.find_by(nombre: "Perro dos")
 o.ofertagano_id=Oferta.find_by(motivo: "Ni idea").id
 o.diaventa = Date.new(2014,12,8)
