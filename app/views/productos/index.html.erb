@@ -111,6 +111,15 @@ td.text-right {
   <h1><center>Listado de Productos</center></h1>
 
 <head>
+ <%= form_tag productos_path(@productos), :method => :get do%>
+   <p>
+  Mis productos
+  <%= check_box_tag :mis_productos, params[:mis_productos]%>
+  &nbsp;&nbsp;Disponible
+  <%= check_box_tag :disponible, params[:disponible]%>
+  &nbsp;&nbsp;<%= submit_tag "Filtrar", :class => "btn btn-primary"%>
+  </p>
+ <%end%>
 <style>
 table, td {
     padding: 5px;

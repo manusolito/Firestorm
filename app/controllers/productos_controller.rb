@@ -18,8 +18,19 @@ class ProductosController < ApplicationController
   def get_producto
     @producto = Producto.find(params[:id])
   end
+  
   def index
     @productos = Producto.all
+	if params[:mis_productos].present? and params[:disponible].present?
+	  @productos = @productos.where("productos.usuario_id = ? and productos.vencimiento > ?", current_usuario.id, DateTime.now.to_date)
+	else
+      if params[:mis_productos].present?
+	    @productos = @productos.where("productos.usuario_id = ?", current_usuario.id)
+      end
+      if params[:disponible].present?
+        @productos = @productos.where("productos.vencimiento > ?", DateTime.now.to_date)
+      end
+	end
   end
 
   def estadistica
