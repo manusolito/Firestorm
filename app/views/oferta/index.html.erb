@@ -106,7 +106,21 @@ td.text-right {
   text-align: right;
 }
 
-</style>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		*{ font-family: sans-serif; margin: 0;}
+		dl{ margin: 0px auto; width: 650px; }
+		dt, dd{ padding: 20px; }
+		dt{ background: #333333; color: white; border-bottom: 1px solid #141414; border-top: 1px solid #4E4E4E; cursor: pointer; }
+		dd{ background: #B8B8B8; line-height: 1.6em; }
+		dt.activo, dt:hover{ background: #424242; }
+
+		dt:before{ content: "▸"; margin-right: 5px; }
+		dt.activo:before{ content: "▾"; }
+	</style>
+</head>
 <% if logged_in? and (not current_usuario.admin) %>
     <% if  current_usuario.ofertas.all.size == 0 %>
     </br> </br>
@@ -139,7 +153,7 @@ td.text-right {
                <% if oferta.producto.ofertagano_id == oferta.id %>
                 <td> Finalizada </td>
                  <td>              </td>
-                 <td> ¡Felicitaciones, resultó ganador de la subasta! </td>
+                 <td> <dl><dt>¡Felicitaciones, resultó ganador de la subasta!</dt> <dd>Contactese con <%=oferta.producto.usuario.nombre%> a <%=oferta.producto.usuario.email%></dd></dl></td>
                  <td>              </td>
                <% else %>
                  <td> Finalizada </td>
@@ -165,3 +179,18 @@ td.text-right {
 
 
 <% end %>
+			<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+	  $('dl dd').not('dt.activo + dd').hide();
+       $('dl dt').click(function(){
+          if ($(this).hasClass('activo')) {
+               $(this).removeClass('activo');
+               $(this).next().slideUp();
+          } else {
+               $('dl dt').removeClass('activo');
+               $(this).addClass('activo');
+               $('dl dd').slideUp();
+               $(this).next().slideDown();
+          }
+       });
+	</script>

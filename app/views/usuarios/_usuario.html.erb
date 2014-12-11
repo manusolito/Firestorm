@@ -1,5 +1,7 @@
       <tr>
+	    <%if (usuario.disponible == true)%>
 	    <td class="text-center"><%= image_tag(usuario.url, size: "80") %></td>
         <td class="text-center"><%= link_to usuario.nombre, usuario %></td>
+		<%end%>
       </tr>
   

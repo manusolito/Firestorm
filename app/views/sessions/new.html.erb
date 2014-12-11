@@ -36,7 +36,7 @@
 <%= form_for(:session, url: login_path) do |f| %>
  <div class="field">
       <%= f.label :dni %><br>
-      <%= f.number_field :dni, :required =>"required"%>
+      <%= f.number_field :dni, min: 0, :required =>"required"%>
   </div>
  <div class="field">
       <%= f.label :password, "Contraseña"%><br>
