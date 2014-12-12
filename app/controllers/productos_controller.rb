@@ -15,6 +15,10 @@ class ProductosController < ApplicationController
   end
  
   
+  def edit
+    @producto = Producto.find(params[:id])
+  end
+  
   def get_producto
     @producto = Producto.find(params[:id])
   end

@@ -140,7 +140,9 @@ table, td {
 	    <th class="text-center">Categoria</th>
      <% if logged_in? and (current_usuario.admin)%>   
       <th class="text-center">Dinero ganado</th>
+
        <% end %>
+       <th> </th>
     </tr>
   </thead>
 
@@ -156,6 +158,11 @@ table, td {
          <% if producto.vencimiento>DateTime.now.to_date and logged_in? and ((not current_usuario.admin) and (current_usuario != producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => producto.id)) %>
              <td class="text-center"><%= link_to "Ofertar", new_ofertum_path(producto.id) %></td>
          <% end %>
+          <% if (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
+              <td class="text-center"><%= link_to "Editar", controller: "productos", action: "edit", id: producto.id %></td>
+         <%else%>
+              <td class="text-center"><%= "-"%> </td>
+          <%end%>
       </tr>
     <%end%>
     <% end %>
