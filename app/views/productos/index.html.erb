@@ -173,10 +173,14 @@ table, td {
          <% end %>
 		 <% if logged_in? and (current_usuario.admin) and producto.ofertagano_id != nil%>  
 		      <td class="text-center"><%= Oferta.find(producto.ofertagano_id).monto * 0.3 %></td>
-         <% end %>
+         <%else%>
+          <td class="text-center"> - </td>
+          <%end%>
          <% if producto.ofertas.count == 0 and producto.vencimiento>DateTime.now.to_date and (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
               <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit, class: 'btn btn-info btn-sm'%> </td>
           <%end%>
+    
+          
       </tr>
     <%end%>
     <% end %>
