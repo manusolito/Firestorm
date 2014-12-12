@@ -107,8 +107,8 @@ class ProductosController < ApplicationController
      @ide =  params[:ofertagano_id]
      @producto.ofertagano_id = @ide
      @producto.diaventa = DateTime.now
-     @producto.save
-     if @producto.save
+     @producto.save(:validate => false)
+     if @producto.save(:validate => false)
          redirect_to welcome_index_path, :notice => "Ganador elegido" 
      else
         redirect_to productos_path, :notice => "Error al elegir el ganador. Intentelo nuevamente"

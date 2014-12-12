@@ -159,7 +159,7 @@ table, td {
              <td class="text-center"><%= link_to "Ofertar", new_ofertum_path(producto.id) %></td>
          <% end %>
           <% if (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
-              <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit%> </td>
+              <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit, class: 'btn btn-info btn-sm'%> </td>
          <%else%>
               <td class="text-center"><%= "-"%> </td>
           <%end%>
