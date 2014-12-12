@@ -111,14 +111,14 @@ td.text-right {
   <h1><center>Listado de Productos</center></h1>
 
 <head>
- <%= form_tag productos_path(@productos), :method => :get do%>
+ <center><%= form_tag productos_path(@productos), :method => :get do%>
    <p>
   Mis productos
   <%= check_box_tag :mis_productos, params[:mis_productos]%>
   &nbsp;&nbsp;Disponible
   <%= check_box_tag :disponible, params[:disponible]%>
   &nbsp;&nbsp;<%= submit_tag "Filtrar", :class => "btn btn-primary"%>
-  </p>
+  </p></center>
  <%end%>
 <style>
 table, td {
@@ -141,6 +141,7 @@ table, td {
      <% if logged_in? and (current_usuario.admin)%>   
       <th class="text-center">Dinero ganado</th>
        <% end %>
+      <th> </th>
     </tr>
   </thead>
 
@@ -156,6 +157,11 @@ table, td {
          <% if producto.vencimiento>DateTime.now.to_date and logged_in? and ((not current_usuario.admin) and (current_usuario != producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => producto.id)) %>
              <td class="text-center"><%= link_to "Ofertar", new_ofertum_path(producto.id) %></td>
          <% end %>
+         <% if (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
+              <td class="text-center"><%= link_to "Editar", controller: "productos", action: "edit", id: producto.id %></td>
+         <%else%>
+              <td class="text-center"><%= "-"%> </td>
+          <%end%>
       </tr>
     <%end%>
     <% end %>
