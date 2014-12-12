@@ -144,9 +144,9 @@ td.text-right {
   <% end %>
 </p>
 
-<% if logged_in? and (current_usuario.admin)%>
+<% if logged_in? and (current_usuario == @producto.usuario)%>
      <% if @producto.ofertas.size != 0%>
-        <h3>el producto tiene ofertas</h3>
+        <h3>El producto tiene ofertas</h3>
      <% end %>
     <%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Esta seguro de eliminar el producto?" }%><br>
 <% end %>

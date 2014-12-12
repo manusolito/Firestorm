@@ -171,18 +171,26 @@ table, td {
 		 <% if producto.vencimiento>DateTime.now.to_date and logged_in? and ((not current_usuario.admin) and (current_usuario != producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => producto.id)) %>
             <td class="text-center"><%= link_to "Ofertar", new_ofertum_path(producto.id) %>		 </td>
          <% end %>
-		 <% if logged_in? and (current_usuario.admin) and producto.ofertagano_id != nil%>  
-		      <td class="text-center"><%= Oferta.find(producto.ofertagano_id).monto * 0.3 %></td>
-         <%else%>
-          <td class="text-center"> - </td>
+		 <% if logged_in? %>  
+		      <%if current_usuario.admin and producto.ofertagano_id != nil%>
+            <td class="text-center"><%= Oferta.find(producto.ofertagano_id).monto * 0.3 %></td>
+          <%else%>
+             <%if current_usuario.admin %>
+                <td class="text-center"> - </td>
+             <%end%>
+          <%end%>
           <%end%>
          <% if producto.ofertas.count == 0 and producto.vencimiento>DateTime.now.to_date and (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
               <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit, class: 'btn btn-info btn-sm'%> </td>
+          <%else%>
+              <td> </td>
+
           <%end%>
     
           
       </tr>
     <%end%>
+
     <% end %>
   </tbody>
 </table>
