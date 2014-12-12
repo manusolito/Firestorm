@@ -28,12 +28,8 @@ Rails.application.routes.draw do
    get '/productos/estadistica', to: 'productos#estadistica'
 
    post '/productos/:id/edit', to: 'productos#edit'
-
-   get '/productos/:id/edit', to: 'productos#edit'
-
-   get '/productos/:id/update', to: 'productos#update'
-
-   post '/productos/:id/update', to: 'productos#update' 
+ 
+ 
    
   #post '/usuarios' =>'usuarios#confirmation', :as => :confirmation
   #get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

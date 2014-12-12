@@ -14,11 +14,24 @@ class ProductosController < ApplicationController
      redirect_to(root_url) if current_usuario.admin?
   end
  
+  def update
+    @producto= Producto.find(params[:id])
+   if @producto.update_attributes(o_params)
+    redirect_to @producto, :notice => "Producto actualizado"
+   else
+    render :edit, :notice => "Error al actualizar el producto, intentelo nuevamente"
+   end
+  end
+
+
+   def o_params           
+       params.require(:producto).permit(:nombre, :prourl, :vencimiento, :descripcion, :categoria)
+    end
   
   def edit
     @producto = Producto.find(params[:id])
   end
-  
+
   def get_producto
     @producto = Producto.find(params[:id])
   end

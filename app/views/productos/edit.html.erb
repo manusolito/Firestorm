@@ -29,10 +29,50 @@ p.oblique {
 </style>
 
 <div class="ventanaBorder">
-<h2><center>Editar Producto</center></h2>
+<%= form_for :productos, url:productos_path do |f| %>
 
-<%= render 'form' %>
+  <% if @producto.errors.any? %>
+    <div id="error_explanation">
+      <h2><font color="red"> El producto no puede ser guardado:</font></h2>
 
+      <ul>
+      <% @producto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to "Atras", productos_path %>
+  <div class="field">
+    <%= f.label :url, "*URL de la foto del producto" %><br>
+    <%= f.text_field :prourl, :required => "required"%>
+
+  </div>
+  <div class="field">
+    <%= f.label :nombre, "*Nombre" %><br>
+    <%= f.text_field :nombre, :required => "required"%>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion, "*Descripcion" %><br>
+    <%= f.text_area :descripcion, :required => "required"%>
+  </div>
+  <div class="field">
+    <%= f.label :vencimiento, "*Vencimiento" %><br>
+    <%= f.date_field :vencimiento, :required => "required", disabled:"disabled"%> 
+  </div>
+  <div class="field">
+  <%= f.label :categoria_id, "*Categoria" %><br>
+  <%= f.select :categoria_id, Categoria.all.collect { |p| [ p.nombre, p.id ]} %>
+ <br><br><%="* Campos obligatorios"%>
+  </div>
+  
+<% if logged_in? %>
+  <div class="actions">
+  <%= f.submit "Actualizar producto", class: "btn btn-primary" %>
+  <% else %>
+    <%= t.submit "Guardar producto", class: "btn btn-primary" %>
+  </div>
+  <%end%>
+
+<% end %>
 </div>

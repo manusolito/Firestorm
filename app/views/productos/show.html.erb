@@ -132,7 +132,7 @@ td.text-right {
      <td class="text-center"><%= @producto.descripcion %></td>
      <td class="text-center"><%= @producto.vencimiento %></td>
      <td class="text-center"><%= link_to @producto.categoria.nombre, controller: "categoria", action: "show", id: @producto.categoria.id %></td>
-     <td class="text-center"><%= link_to "Editar", controller: "productos", action: "edit", id: @producto.id %></td>
+     <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit%> </td>
   </tbody>
 </table>
 
