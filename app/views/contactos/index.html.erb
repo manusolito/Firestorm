@@ -5,11 +5,11 @@
   background: white;
   border-radius:5px;
   border-collapse: collapse;
-  height: 120px;
+  height: 320px;
   margin: auto;
-  max-width: 100px;
+  max-width: 600px;
   padding:5px;
-  width: 50%;
+  width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
 }
@@ -107,27 +107,32 @@ td.text-right {
 }
 
 </style>
-
-
-
-<% if logged_in? and (current_usuario.admin)%>
-
-<table class="table-fill">
-  <thead>
-   <tr>
-      <th class="text-center">Asunto</th>
-      <th class="text-center">Mensaje</th>
-      <th class="text-center">Usuario que envió el mensaje</th>
+<% if logged_in? and (current_usuario.admin) %>
+    <% if  Contacto.all.size == 0 %>
+       </br> </br>
+       <div class="alert alert-info" role="alert">No tiene ningún mensaje en su buzón de entrada</div>
+    <% else %>
     
-   </tr>
-  </thead>
-  
-  <tbody class="table-hover">
+    <h1>Mis mensajes</h1>
+   <table style="width:100%">
+     <tr>
+       <th>Asunto</th>
+       <th>       </th>
+	   <th>       </th>
+     </tr>
+	 
+     <% @contactos.each do |m| %>
+        <tr>
+         <td><%= m.asunto%> </td>
+         <td><%= link_to 'Ver detalles', m, class: 'btn btn-info btn-sm' %></td>
+		 <td><%= link_to "Eliminar", m, method: :delete, data: { confirm: "Borrar mensaje definitivamente?" }, class: 'btn btn-mini btn-danger' %></td>
+         </tr>
+      <% end %>
+                    
+    </table>
 
-      <td class="text-center"><%= @contacto.asunto %></td>
-      <td class="text-center"><%= @contacto.mensaje  %></td>
-      <td class="text-center"><%=   %></td>
-  </tbody>
-</table>
+  <% end %>
 
-<%end%>
+
+
+<% end %>

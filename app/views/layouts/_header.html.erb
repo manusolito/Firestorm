@@ -21,7 +21,7 @@
                   <li><%= link_to 'Contacto',new_contacto_path %></li> 
 				<% end %>
                 <% if logged_in? and current_usuario.admin?%> 
-                  <li><%= link_to 'Comunicados', contacto_path %></li>
+                  <li><%= link_to 'Comunicados', contactos_path %></li>
                 <% end %>
 				<% if logged_in? %>
               <% if current_usuario.admin? %> 

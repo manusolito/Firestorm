@@ -22,6 +22,7 @@ class Usuario < ActiveRecord::Base
 	validates :password, presence:true, length:{minimum: 7, :message => "debe contener como minimo 7 caracteres."}
 	has_many :productos
   	has_many :ofertas
+	has_many :contactos
 	def Usuario.digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                     BCrypt::Engine.cost

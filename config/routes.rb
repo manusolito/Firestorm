@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   resources :usuarios
   
-  resources :contacto
+  resources :contactos
   
   root 'welcome#index'
 
