@@ -120,7 +120,6 @@ td.text-right {
       <th class="text-center">Descripcion</th>
       <th class="text-center">Vencimiento</th>
       <th class="text-center">Categoria</th>
-      <th> </th>
     
    </tr>
   </thead>
@@ -133,9 +132,6 @@ td.text-right {
      <td class="text-center"><%= @producto.descripcion %></td>
      <td class="text-center"><%= @producto.vencimiento %></td>
      <td class="text-center"><%= link_to @producto.categoria.nombre, controller: "categoria", action: "show", id: @producto.categoria.id %></td>
-     <td class="text-center"><%= link_to "Editar", controller: "productos", action: "edit", id: @producto.id %></td>
-     
-
   </tbody>
 </table>
 

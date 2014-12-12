@@ -13,10 +13,6 @@ class ProductosController < ApplicationController
   def Usuario_noAdmin
      redirect_to(root_url) if current_usuario.admin?
   end
-
-  def edit
-    @producto = Producto.find(params[:id])
-  end
  
   
   def get_producto
