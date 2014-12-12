@@ -1,7 +1,7 @@
 class Producto < ActiveRecord::Base
     validates:nombre,presence:true
 
-	#validate :fecha_invalida
+	validate :fecha_invalida
 	def fecha_invalida
 	now = DateTime.now.to_date        
     fechaMenor = now + 15.days           
