@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get   'confirmation'   => 'usuarios#confirmation'
-  #post  'destroy'   => 'usuarios#delete'
   
   get 'static_pages/Sobre_bestnid', to: 'static_pages#Sobre_Bestnid'
 
@@ -29,11 +28,6 @@ Rails.application.routes.draw do
 
    post '/productos/:id/edit', to: 'productos#edit'
  
- 
-   
-  #post '/usuarios' =>'usuarios#confirmation', :as => :confirmation
-  #get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-  #get 'productos/:id/ganador' => 'productos#ganador', id: :ofertagano_id
    get 'productos/:id/ganador', to: 'productos#ganador'
   
    post 'productos/:id/ganador', to: 'productos#ganador'
