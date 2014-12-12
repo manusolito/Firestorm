@@ -106,8 +106,19 @@ td.text-right {
   text-align: right;
 }
 
-</style>
+.ventanaBorder {
+  font-size: 85%;
+    margin-left:auto;
+    margin-right:auto;
+    border: 10px solid #a1a1a1;
+    padding: 0px 50px; 
+    background: #B8B8B8;
+    width: 800px;
+    border-radius: 15px;
+}
 
+</style>
+<center><div class="ventanaBorder">
   <h1><center>Listado de Productos</center></h1>
 
 <head>
@@ -118,7 +129,8 @@ td.text-right {
   &nbsp;&nbsp;Disponible
   <%= check_box_tag :disponible, params[:disponible]%>
   &nbsp;&nbsp;<%= submit_tag "Filtrar", :class => "btn btn-primary"%>
-  </p>
+   </p></center>
+</div><br>
  <%end%>
 <style>
 table, td {
@@ -163,7 +175,7 @@ table, td {
 		      <td class="text-center"><%= Oferta.find(producto.ofertagano_id).monto * 0.3 %></td>
          <% end %>
          <% if producto.ofertas.count == 0 and producto.vencimiento>DateTime.now.to_date and (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
-              <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit%> </td>
+              <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit, class: 'btn btn-info btn-sm'%> </td>
           <%end%>
       </tr>
     <%end%>

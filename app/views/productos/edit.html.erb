@@ -57,7 +57,7 @@ p.oblique {
     <%= f.text_area :descripcion, :required => "required"%>
   </div>
   <div class="field">
-    <%= f.label :vencimiento, "*Vencimiento" %><br>
+    <%= f.label :vencimiento, "No puede editarse el vencimiento" %><br>
     <%= f.date_field :vencimiento, :required => "required", disabled:"disabled"%> 
   </div>
   <div class="field">
@@ -67,8 +67,8 @@ p.oblique {
   </div>
   
   <div class="actions">
-    <%= f.submit "Guardar producto", class: "btn btn-primary" %>
+  <%= f.submit "Actualizar producto", class: "btn btn-primary" %>
   </div>
-
+  
 <% end %>
 </div>

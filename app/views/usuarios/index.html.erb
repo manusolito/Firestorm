@@ -106,9 +106,21 @@ td.text-right {
   text-align: right;
 }
 
+.ventanaBorder {
+  font-size: 85%;
+    margin-left:auto;
+    margin-right:auto;
+    border: 10px solid #a1a1a1;
+    padding: 0px 50px; 
+    background: #B8B8B8;
+    width: 800px;
+    border-radius: 15px;
+}
+
 </style>
 
-<h1><center>Usuarios registrados y activos</center></h1>
+<div class="ventanaBorder">
+  <h1><center>Usuarios registrados y activos</center></h1>
 
 <% if flash[:success] %>
     <h4><font color="blue"><div class="success"><%= flash[:success] %></div></font></h4>
@@ -130,7 +142,7 @@ table, td {
   <%= submit_tag "Filtrar", :class => "btn btn-primary"%>
   </p>
  <%end%>
-
+</div>
 <table class="table-fill">
   <thead>
     <tr>
