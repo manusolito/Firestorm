@@ -103,6 +103,25 @@ Oferta.create!(motivo: "Me caben los chobis",
                monto: "5",
 			   usuario: Usuario.find_by(nombre: "Le man"),
 			   producto: Producto.find_by(nombre: "Bichin"))
+d=Date.new(2014,12,30)
+Producto.create!(nombre: "Spider-pig",
+               descripcion: "Camina por el techo",
+			   categoria: "Mascotas",
+			   prourl: "http://imgs.tuts.dragoart.com/how-to-draw-spider-pig_1_000000003520_3.jpg",
+			   usuario: Usuario.find_by(dni: "7654321"),
+			   categoria: Categoria.find_by(nombre: "Mascotas"),
+			   vencimiento: d)
+Oferta.create!(motivo: "Mi mujer limpia el techo",
+               monto: "1000",
+			   usuario: Usuario.find_by(nombre: "Le man"),
+			   producto: Producto.find_by(nombre: "Spider-pig"))
+Producto.create!(nombre: "Coco",
+               descripcion: "Esta en la casa",
+			   categoria: "Mascotas",
+			   prourl: "http://fromperu.galeon.com/zoologico/fotos/cocodrilo.jpg",
+			   usuario: Usuario.find_by(dni: "7654321"),
+			   categoria: Categoria.find_by(nombre: "Mascotas"),
+			   vencimiento: d)
 			   
 o=Producto.find_by(nombre: "Bichin")
 o.ofertagano_id=Oferta.find_by(motivo: "Me caben los chobis").id

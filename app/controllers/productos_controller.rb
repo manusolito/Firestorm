@@ -16,17 +16,14 @@ class ProductosController < ApplicationController
  
   def update
     @producto= Producto.find(params[:id])
-   if @producto.update_attributes(o_params)
-    redirect_to @producto, :notice => "Producto actualizado"
-   else
-    render :edit, :notice => "Error al actualizar el producto, intentelo nuevamente"
-   end
-  end
-
-
-   def o_params           
-       params.require(:producto).permit(:nombre, :prourl, :vencimiento, :descripcion, :categoria)
+	#@producto.categoria(Categoria.find(@producto.categoria_id))
+   if @producto.update_attributes(producto_params)
+	  flash[:success] = "Producto Actualizado"
+      redirect_to @producto
+    else
+      render 'edit'
     end
+  end
   
   def edit
     @producto = Producto.find(params[:id])
@@ -82,7 +79,7 @@ class ProductosController < ApplicationController
   end
 
   def create
-    @producto = Producto.new(producto_params)
+    @producto = Producto.new(product_params)
 	@producto.usuario=current_usuario
 	@producto.categoria(Categoria.find(@producto.categoria_id))
 
@@ -117,6 +114,9 @@ class ProductosController < ApplicationController
   
   private
     def producto_params
+      params.require(:producto).permit(:nombre, :descripcion, :vencimiento, :prourl, :categoria_id, :ofertagano_id , :diaventa)
+    end
+	def product_params
       params.require(:productos).permit(:nombre, :descripcion, :vencimiento, :prourl, :categoria_id, :ofertagano_id , :diaventa)
     end
 end

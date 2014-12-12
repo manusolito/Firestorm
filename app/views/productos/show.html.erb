@@ -132,7 +132,9 @@ td.text-right {
      <td class="text-center"><%= @producto.descripcion %></td>
      <td class="text-center"><%= @producto.vencimiento %></td>
      <td class="text-center"><%= link_to @producto.categoria.nombre, controller: "categoria", action: "show", id: @producto.categoria.id %></td>
-     <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit%> </td>
+	 <% if @producto.ofertas.count == 0 and @producto.vencimiento>DateTime.now.to_date and (@producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
+     <td> <%= link_to "Editar", edit_producto_path(@producto.id)%> </td>
+	 <%end%>
   </tbody>
 </table>
 

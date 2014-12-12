@@ -29,7 +29,7 @@ p.oblique {
 </style>
 
 <div class="ventanaBorder">
-<%= form_for :productos, url:productos_path do |f| %>
+<%= form_for @producto do |f| %>
 
   <% if @producto.errors.any? %>
     <div id="error_explanation">
@@ -66,13 +66,9 @@ p.oblique {
  <br><br><%="* Campos obligatorios"%>
   </div>
   
-<% if logged_in? %>
   <div class="actions">
-  <%= f.submit "Actualizar producto", class: "btn btn-primary" %>
-  <% else %>
-    <%= t.submit "Guardar producto", class: "btn btn-primary" %>
+    <%= f.submit "Guardar producto", class: "btn btn-primary" %>
   </div>
-  <%end%>
 
 <% end %>
 </div>

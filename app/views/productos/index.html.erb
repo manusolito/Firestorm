@@ -137,12 +137,13 @@ table, td {
       <th class="text-center">Nombre</th>
       <th class="text-center">Descripcion</th>
       <th class="text-center">Vencimiento</th>
-	    <th class="text-center">Categoria</th>
-     <% if logged_in? and (current_usuario.admin)%>   
-      <th class="text-center">Dinero ganado</th>
-
+	  <th class="text-center">Categoria</th>
+	    <th class="text-center">
+      <% if logged_in? and (current_usuario.admin)%>   
+      Dinero ganado
        <% end %>
-       <th> </th>
+	   </th>
+
     </tr>
   </thead>
 
@@ -155,13 +156,14 @@ table, td {
          <td class="text-center"><%= link_to 'Detalles', producto %></td>
         <td class="text-center"><%= producto.vencimiento %></td>
         <td class="text-center"><%= link_to Categoria.find(producto.categoria_id).nombre, Categoria.find(producto.categoria_id) %></td>
-         <% if producto.vencimiento>DateTime.now.to_date and logged_in? and ((not current_usuario.admin) and (current_usuario != producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => producto.id)) %>
-             <td class="text-center"><%= link_to "Ofertar", new_ofertum_path(producto.id) %></td>
+		 <% if producto.vencimiento>DateTime.now.to_date and logged_in? and ((not current_usuario.admin) and (current_usuario != producto.usuario) and not Oferta.exists?(:usuario_id => current_usuario.id, :producto_id => producto.id)) %>
+            <td class="text-center"><%= link_to "Ofertar", new_ofertum_path(producto.id) %>		 </td>
          <% end %>
-          <% if (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
+		 <% if logged_in? and (current_usuario.admin) and producto.ofertagano_id != nil%>  
+		      <td class="text-center"><%= Oferta.find(producto.ofertagano_id).monto * 0.3 %></td>
+         <% end %>
+         <% if producto.ofertas.count == 0 and producto.vencimiento>DateTime.now.to_date and (producto.usuario == current_usuario) and logged_in? and ((not current_usuario.admin)) %>
               <td> <%= link_to "Editar", edit_producto_path(producto.id), method: :edit%> </td>
-         <%else%>
-              <td class="text-center"><%= "-"%> </td>
           <%end%>
       </tr>
     <%end%>
