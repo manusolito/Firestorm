@@ -17,8 +17,12 @@
             <ul class="nav navbar-nav">
                 <li ><%= link_to 'Sobre bestnid', static_pages_Sobre_bestnid_path %></li>
                 <li><%= link_to 'Ayuda', static_pages_Ayuda_path %></li>
-                <li><%= link_to 'Categorías', categoria_path %></li>
-                
+				<% if logged_in? and !current_usuario.admin?%> 
+                  <li><%= link_to 'Contacto',new_contacto_path %></li> 
+				<% end %>
+                <% if logged_in? and current_usuario.admin?%> 
+                  <li><%= link_to 'Comunicados', contacto_path %></li>
+                <% end %>
 				<% if logged_in? %>
               <% if current_usuario.admin? %> 
                  <li><%= link_to 'Crear categoría',new_categorium_path %></li> 
