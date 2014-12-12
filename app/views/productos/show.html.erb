@@ -144,14 +144,16 @@ td.text-right {
   <% end %>
 </p>
 
-<% if logged_in? and (current_usuario == @producto.usuario)%>
+
+<% if logged_in? and (current_usuario == @producto.usuario) and @producto.vencimiento>DateTime.now.to_date%>
      <% if @producto.ofertas.size != 0%>
-        <h3>El producto tiene ofertas</h3>
+         <%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Su producto tiene ofertas. Esta seguro de eliminarlo?" }%><br>
+	 <% else %>
+	     <%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Esta seguro de eliminar el producto?" }%><br>
+
      <% end %>
-    <%= link_to "Eliminar producto", @producto_id, :method => :delete , data: { confirm: "Esta seguro de eliminar el producto?" }%><br>
+   
 <% end %>
- 
-  </br><br>
 
 <% if logged_in? and (not current_usuario.admin) and (current_usuario == @producto.usuario) and (@producto.vencimiento <=  DateTime.now.to_date ) %>
 <% if @producto.ofertagano_id == nil %>
