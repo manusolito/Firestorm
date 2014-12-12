@@ -163,20 +163,19 @@ td.text-right {
    <table style="width:100%">
     <tr>
       <th>Motivo</th>
-      <th>Monto</th>
       <th>Elegir ganador</th>
    </tr>
   
     <%@producto.ofertas.each do |e|%>
        <tr>
         <td><%=e.motivo%></td>
-        <td><%=e.monto%></td>
         <td><%= link_to "Elegir", {"controller" => "productos", "action" => "ganador", "ofertagano_id" => e.id } %><td>    
       </tr>
     <%end%>
   </table>
 <%else%>
-<h4>Eligio a <%= Oferta.find_by(id: @producto.ofertagano_id).usuario.nombre%> como ganador. Contactelo a <%= Oferta.find_by(id: @producto.ofertagano_id).usuario.email%></h4>
+<% @ofert= Oferta.find_by(id: @producto.ofertagano_id)%>
+<h4>Eligio a <%= @ofert.usuario.nombre%> como ganador. Contactelo a <%= @ofert.usuario.email%>. Usted gano en esta subasta <%= @ofert.monto * 0.7%></h4>
 <%end%>
 <%end%>
 

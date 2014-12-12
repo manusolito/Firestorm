@@ -1,17 +1,3 @@
-<style>
-
-.ventanaBorder {
-  font-size: 85%;
-    margin-left:auto;
-    margin-right:auto;
-    border: 10px solid #a1a1a1;
-    padding: 0px 0px; 
-    background: #B8B8B8;
-    width: 300px;
-    border-radius: 15px;
-}
-
-</style>
 
 
 <head>
@@ -22,10 +8,8 @@ div {
 </style>
 </head>
 <center>
-<div class="ventanaBorder">
+
   <center>
-<div class="row">
-  <div class="col-md-6 col-md-offset-4">
     <h2>Formulario de contacto</h2>
 <%= form_for :contactos, url:contactos_path do |f| %>
 
@@ -58,9 +42,6 @@ div {
   </div>
  </br></br> 
 <%= link_to 'Atras', welcome_index_path %>
-</div>
-</div>
 </center>
-</div>
 </center>
 <% end %>

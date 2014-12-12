@@ -48,26 +48,20 @@ class ProductosController < ApplicationController
   end
 
   def estadistica
-   productos = Producto.all
-   productos = productos.where.not(ofertagano_id: nil)
+   @productos = Producto.all
+   @productos = @productos.where.not(ofertagano_id: nil)
 
    if params[:start_date].present? and params[:end_date].present?
-    productos = productos.where("productos.diaventa >= ? and productos.diaventa <= ?", params[:start_date],params[:end_date])
+    @productos = @productos.where("productos.diaventa >= ? and productos.diaventa <= ?", params[:start_date],params[:end_date])
    else
       if params[:start_date].present?
-        productos = productos.where("productos.diaventa >= ?", params[:start_date])
+        @productos = @productos.where("productos.diaventa >= ?", params[:start_date])
       end
       if params[:end_date].present?
-        productos = productos.where("productos.diaventa <= ?", params[:end_date])
+        @productos = @productos.where("productos.diaventa <= ?", params[:end_date])
       end
    end
-   @n = -1
-   Usuario.all.each do |u|
-   if (@n < productos.where("productos.usuario_id = ?", u.id).count)
-     @n = productos.where("productos.usuario_id = ?", u.id).count
-	 @usua = u
-    end
-	end
+   @productos=@productos.joins(:usuario).select("usuarios.url, usuarios.nombre, count(productos.usuario_id) as ventas_count").group('usuarios.url, usuarios.nombre').order("ventas_count desc")
   end
 
   def show
@@ -103,7 +97,7 @@ class ProductosController < ApplicationController
   def ganador
      @ide =  params[:ofertagano_id]
      @producto.ofertagano_id = @ide
-     @producto.diaventa = DateTime.now
+     @producto.diaventa = DateTime.now.to_date
      @producto.save(:validate => false)
      if @producto.save(:validate => false)
          redirect_to welcome_index_path, :notice => "Ganador elegido" 

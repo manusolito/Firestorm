@@ -6,7 +6,7 @@ Usuario.create!(nombre:  "ModoDios",
 			 dni: "87654321",
 			 url: "http://thumbs.media.smithsonianmag.com//filer/6d/20/6d207ae8-0c3c-455a-8ff2-8d3a7cf37ce0/smithsonian-photo-contest-winner-2012-crop.jpg__800x600_q85_crop.jpg",
              admin: true)
-d=Date.new(2014,11,10)
+d=Date.new(2014,11,10).to_date
 Usuario.create!(nombre: "Encatador de Perros",
                 email: "mail@mail.com",
 				tarjeta: "1234567890749267",
@@ -75,12 +75,12 @@ Oferta.create!(motivo: "Es blanco como mis canas",
 			   producto: Producto.find_by(nombre: "Gato"))
 o=Producto.find_by(nombre: "Gato")
 o.ofertagano_id=Oferta.find_by(motivo: "Es blanco como mis canas").id
-o.diaventa = Date.new(2014,12,8)
+o.diaventa = Date.new(2014,12,8).to_date
 o.save
 
 o=Producto.find_by(nombre: "Perro dos")
 o.ofertagano_id=Oferta.find_by(motivo: "Ni idea").id
-o.diaventa = Date.new(2014,12,8)
+o.diaventa = Date.new(2014,12,8).to_date
 o.save
 
 Usuario.create!(nombre: "El Mostro",
@@ -103,7 +103,7 @@ Oferta.create!(motivo: "Me caben los chobis",
                monto: "5",
 			   usuario: Usuario.find_by(nombre: "Le man"),
 			   producto: Producto.find_by(nombre: "Bichin"))
-d=Date.new(2014,12,30)
+d=Date.new(2014,12,30).to_date
 Producto.create!(nombre: "Spider-pig",
                descripcion: "Camina por el techo",
 			   categoria: "Mascotas",
@@ -125,7 +125,7 @@ Producto.create!(nombre: "Coco",
 			   
 o=Producto.find_by(nombre: "Bichin")
 o.ofertagano_id=Oferta.find_by(motivo: "Me caben los chobis").id
-o.diaventa = Date.new(2014,11,17)
+o.diaventa = Date.new(2014,11,17).to_date
 o.save
 			   
 
