@@ -38,9 +38,9 @@
                      </a>
                      <ul class="dropdown-menu">
                        <li><%= link_to "Perfil", current_usuario %></li>
-					   <li><%= link_to "Mis Ofertas", oferta_path %></li>
              <li><%= link_to "Configuracion", edit_usuario_path(:id => current_usuario.id) %></li>
 			 <% if not current_usuario.admin? %> 
+			 <li><%= link_to "Mis Ofertas", oferta_path %></li>
              <li><%= link_to "Eliminar cuenta", confirmation_path, data: { confirm: "Esta seguro de eliminar su cuenta?" }%></li>
 			 <% end %>
                        <li class="divider"></li>
